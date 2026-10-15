@@ -5,53 +5,89 @@ echo "=========================================================="
 echo " Independent Books - macOS Native (.app & .dmg) Builder   "
 echo "=========================================================="
 
-# 1. Check Python
-if ! command -v python3 &> /dev/null; then
-    echo "[ERROR] Python 3 is required. Please install Python 3 or run: brew install python"
-    exit 1
-fi
+APP_ROOT="$(cd "$(dirname "$0")" && pwd)"
+DIST_DIR="$APP_ROOT/dist_mac"
+APP_BUNDLE="$DIST_DIR/Independent Books.app"
+CONTENTS="$APP_BUNDLE/Contents"
+RESOURCES="$CONTENTS/Resources"
+MACOS_BIN="$CONTENTS/MacOS"
 
-echo "[1/5] Checking Apple Developer Tools..."
-if ! xcode-select -p &> /dev/null; then
-    echo "Installing Xcode command line tools (Clang)..."
-    xcode-select --install
-fi
+# 1. Verification
+echo "[1/4] Running core tests..."
+python3 -m pytest tests/ -k "not browser and not presentation"
 
-echo "[2/5] Installing build requirements..."
-python3 -m pip install --quiet --upgrade pip
-python3 -m pip install --quiet nuitka openpyxl pytest
+# 2. Compile Server Binary (Zero .py Leakage)
+echo "[2/4] Compiling native Mach-O binary with Nuitka..."
+rm -rf "$DIST_DIR"
+mkdir -p "$MACOS_BIN" "$RESOURCES"
 
-echo "[3/5] Running core accounting verification tests..."
-python3 -m pytest tests/ -k "not browser"
-
-echo "[4/5] Compiling native C/Mach-O binary with Nuitka & Apple Clang..."
-rm -rf dist_mac
 python3 -m nuitka \
     --standalone \
-    --macos-create-app-bundle \
-    --macos-app-name="Independent Books" \
-    --macos-app-mode=gui \
-    --output-dir=dist_mac \
-    --output-filename=IndependentBooks \
+    --output-dir="$DIST_DIR/build" \
+    --output-filename=app_server \
     app_server.py
 
-# Copy frontend assets into the .app bundle Resources
-APP_RESOURCES="dist_mac/Independent Books.app/Contents/Resources"
-mkdir -p "$APP_RESOURCES"
-cp index.html fidelity.css workflows.js voucher_logic.js lookup_context.js print_view.js date_picker.js "$APP_RESOURCES/"
+# Move compiled binaries to App Bundle
+cp -R "$DIST_DIR/build/app_server.dist/"* "$MACOS_BIN/"
+rm -rf "$DIST_DIR/build"
 
-# Ensure data directory exists inside Application Support or bundle
-mkdir -p "$APP_RESOURCES/data"
+# 3. Bundle Assets & Launcher
+echo "[3/4] Packaging frontend assets, icon, and launcher..."
+cp index.html fidelity.css workflows.js voucher_logic.js lookup_context.js print_view.js date_picker.js "$RESOURCES/"
+cp logo.png favicon.ico manifest.json "$RESOURCES/"
+if [ -f "app.icns" ]; then
+    cp app.icns "$RESOURCES/app.icns"
+fi
 
-echo "[5/5] Generating distributable macOS Disk Image (IndependentBooks.dmg)..."
-rm -f IndependentBooks.dmg
+# Copy Launcher as primary executable
+cp "$APP_ROOT/launch_mac.sh" "$MACOS_BIN/IndependentBooks"
+chmod +x "$MACOS_BIN/IndependentBooks"
+chmod +x "$MACOS_BIN/app_server"
+
+# Generate Info.plist
+cat <<EOF > "$CONTENTS/Info.plist"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>IndependentBooks</string>
+    <key>CFBundleIconFile</key>
+    <string>app.icns</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.independentbooks.app</string>
+    <key>CFBundleName</key>
+    <string>Independent Books</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>11.0</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+</dict>
+</plist>
+EOF
+
+# 4. Generate Distributable DMG
+echo "[4/4] Creating IndependentBooks.dmg..."
+DMG_FILE="$DIST_DIR/IndependentBooksSetup.dmg"
+rm -f "$DMG_FILE"
+
+DMG_STAGE="$DIST_DIR/dmg_stage"
+mkdir -p "$DMG_STAGE"
+cp -R "$APP_BUNDLE" "$DMG_STAGE/"
+ln -s /Applications "$DMG_STAGE/Applications"
+
 hdiutil create \
     -volname "Independent Books" \
-    -srcfolder "dist_mac/Independent Books.app" \
+    -srcfolder "$DMG_STAGE" \
     -ov -format UDZO \
-    IndependentBooks.dmg
+    "$DMG_FILE"
 
+rm -rf "$DMG_STAGE"
 echo "=========================================================="
-echo " [SUCCESS] Created IndependentBooks.dmg"
-echo " You can now double-click IndependentBooks.dmg to install!"
+echo " [SUCCESS] Created: $DMG_FILE"
+echo " Drag 'Independent Books.app' to /Applications to install."
 echo "=========================================================="
