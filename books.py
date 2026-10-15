@@ -1509,9 +1509,9 @@ class Books:
             for l_name, l_data in c.get('ledgers', {}).items():
                 party_cls = _party_classification(c, l_name)
                 bal = decimal(l_data.get('signed_closing', 0), '0.01')
-                if party_cls == 'debtor':
+                if party_cls == 'debtor' and bal > 0:
                     due_from_customers += bal
-                elif party_cls == 'creditor':
+                elif party_cls == 'creditor' and bal < 0:
                     due_to_suppliers += (-bal)
 
             if due_from_customers < 0:
@@ -1531,7 +1531,12 @@ class Books:
             nominal_movement = sum((decimal(ledger.get('period_movement', 0), '0.01')
                                     for ledger in month_view.get('ledgers', {}).values()
                                     if (ledger.get('group_type') or ledger.get('root_group_name') or ledger.get('root_group')) in nominal), Decimal('0.00'))
-            month_profit = -nominal_movement
+            opening_stock = sum((decimal(item.get('period_opening_value', 0), '0.01')
+                                 for item in month_view.get('stock_items', {}).values()), Decimal('0.00'))
+            closing_stock = sum((decimal(item.get('closing_balance', 0), '0.01')
+                                 for item in month_view.get('stock_items', {}).values()), Decimal('0.00'))
+            stock_delta = closing_stock - opening_stock
+            month_profit = -nominal_movement + stock_delta
 
             # 5. Trend data (Week, Month, Year)
             week_days = []

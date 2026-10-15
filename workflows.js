@@ -584,7 +584,14 @@ const ledgerRow=(name,l)=>({action:'ledgerReport',args:name,cells:[name,cents(l.
   setKeys([['F2','Period','period'],['F3','Company','company'],['F5',detailed?'Condensed':'Detailed','toggleFinancialDetail'],['Ctrl+P','Print','print'],['E','Export','export'],['F12','Setting','unifiedSettings']]);
   const query=new URLSearchParams({company:d.active_company,report:f.name,period_id:f.period?.id||`${period.from_date}-${period.to_date}`,from:period.from_date,to:period.to_date,detailed:detailed?'1':'0'});
   const result=await api('/api/financial_tree?'+query),snapshot=result.snapshot;
-  const rowHtml=node=>`<tr data-row data-report-node="${esc(node.name)}" data-action="reportDrill" data-args="${esc(JSON.stringify(node))}"><td style="padding-left:${8+(node.parent_id?18:0)}px">${esc(node.name)}</td><td class="amount">${money(cents(node.amount))}</td></tr>${(node.children||[]).map(rowHtml).join('')}`;
+  const displayAmount = node => {
+    const c = cents(node.amount);
+    if (node.isNegative || ((node.name === 'Closing Stock' || node.name === 'Opening Stock') && c < 0n)) {
+      return '(-) ' + money(abs(c));
+    }
+    return money(abs(c));
+  };
+  const rowHtml=node=>`<tr data-row data-report-node="${esc(node.name)}" data-action="reportDrill" data-args="${esc(JSON.stringify(node))}"><td style="padding-left:${8+(node.parent_id?18:0)}px">${esc(node.name)}</td><td class="amount">${displayAmount(node)}</td></tr>${(node.children||[]).map(rowHtml).join('')}`;
   let leftRoots = [], rightRoots = [];
   if (f.name === 'Balance Sheet') {
     const stock = Object.values(d.stock_items || {}).reduce((s, x) => s + cents(x.closing_balance), 0n);
@@ -613,22 +620,24 @@ const ledgerRow=(name,l)=>({action:'ledgerReport',args:name,cells:[name,cents(l.
     }
   } else if (f.name === 'Profit & Loss A/c') {
     const stock = Object.values(d.stock_items || {}).reduce((s, x) => s + cents(x.closing_balance), 0n);
-    const openingStock = Object.values(d.stock_items || {}).reduce((s, x) => s + cents(x.opening_balance), 0n);
+    const openingStock = Object.values(d.stock_items || {}).reduce((s, x) => s + cents(x.period_opening_value || x.opening_balance), 0n);
     const stockDelta = stock - openingStock;
-    if (openingStock > 0n) {
+    if (openingStock !== 0n) {
       leftRoots.push({
         name: 'Opening Stock',
         amount: (Number(openingStock) / 100).toFixed(2),
         children: [],
-        node_type: 'calculated'
+        node_type: 'calculated',
+        isNegative: openingStock < 0n
       });
     }
-    if (stock > 0n) {
+    if (stock !== 0n) {
       rightRoots.push({
         name: 'Closing Stock',
         amount: (Number(stock) / 100).toFixed(2),
         children: [],
-        node_type: 'calculated'
+        node_type: 'calculated',
+        isNegative: stock < 0n
       });
     }
     const expKeywords = ['expense', 'purchase', 'cost', 'opening stock', 'trading'];
@@ -667,9 +676,20 @@ const ledgerRow=(name,l)=>({action:'ledgerReport',args:name,cells:[name,cents(l.
   if (f.name === 'Balance Sheet' || f.name === 'Profit & Loss A/c') {
     const leftTitle = f.name === 'Balance Sheet' ? 'Liabilities' : 'Expenses';
     const rightTitle = f.name === 'Balance Sheet' ? 'Assets' : 'Income';
-    const sumSide = roots => roots.reduce((s, node) => s + abs(cents(node.amount)), 0n);
-    const leftTotal = sumSide(leftRoots);
-    const rightTotal = sumSide(rightRoots);
+    let leftTotal = 0n, rightTotal = 0n;
+    if (f.name === 'Profit & Loss A/c') {
+      leftTotal = leftRoots.reduce((s, node) => s + cents(node.amount), 0n);
+      rightTotal = rightRoots.reduce((s, node) => {
+        if (node.name === 'Closing Stock' || node.name === 'Nett Loss') {
+          return s + cents(node.amount);
+        }
+        return s - cents(node.amount);
+      }, 0n);
+    } else {
+      const sumSide = roots => roots.reduce((s, node) => s + abs(cents(node.amount)), 0n);
+      leftTotal = sumSide(leftRoots);
+      rightTotal = sumSide(rightRoots);
+    }
     const diff = abs(leftTotal - rightTotal);
 
     $('#financial-tree-body').innerHTML = `
