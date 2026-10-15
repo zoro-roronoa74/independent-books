@@ -103,5 +103,5 @@ $browser = $browserPaths | Where-Object { $_ -and (Test-Path -LiteralPath $_) } 
 if ($browser) {
     $profileDir = Join-Path $env:LOCALAPPDATA 'IndependentBooks\profile'
     if (-not (Test-Path $profileDir)) { New-Item -ItemType Directory -Path $profileDir -Force | Out-Null }
-    Start-Process -FilePath $browser -ArgumentList @("--user-data-dir=$profileDir", "--app=$applicationUrl", '--start-maximized')
+    Start-Process -FilePath $browser -ArgumentList @("--user-data-dir=$profileDir", "--app=$applicationUrl", '--no-first-run', '--no-default-browser-check', '--start-maximized')
 } else { Start-Process $applicationUrl }

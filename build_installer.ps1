@@ -146,6 +146,11 @@ namespace IndependentBooksLauncher
             int port = 3543;
             string url = "http://127.0.0.1:" + port;
 
+            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string userDir = Path.Combine(localAppData, "IndependentBooks", "data");
+            try { if (!Directory.Exists(userDir)) Directory.CreateDirectory(userDir); } catch { }
+            string dataPath = Path.Combine(userDir, "books.sqlite3");
+
             if (!IsPortListening("127.0.0.1", port))
             {
                 string nativeServer = Path.Combine(appDir, "app_server.exe");
@@ -154,7 +159,7 @@ namespace IndependentBooksLauncher
                     var startInfo = new ProcessStartInfo
                     {
                         FileName = nativeServer,
-                        Arguments = string.Format("--port {0}", port),
+                        Arguments = string.Format("--port {0} --data \"{1}\"", port, dataPath),
                         WorkingDirectory = appDir,
                         CreateNoWindow = true,
                         UseShellExecute = false,
@@ -168,7 +173,7 @@ namespace IndependentBooksLauncher
                     string pythonw = Path.Combine(appDir, "runtime", "pythonw.exe");
                     if (!File.Exists(pythonw))
                     {
-                        string localPython = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "Python", "Python39", "pythonw.exe");
+                        string localPython = Path.Combine(localAppData, "Programs", "Python", "Python39", "pythonw.exe");
                         if (File.Exists(localPython)) pythonw = localPython;
                         else pythonw = "pythonw.exe";
                     }
@@ -177,7 +182,7 @@ namespace IndependentBooksLauncher
                     var startInfo = new ProcessStartInfo
                     {
                         FileName = pythonw,
-                        Arguments = string.Format("-E -s \"{0}\" --port {1}", serverScript, port),
+                        Arguments = string.Format("-E -s \"{0}\" --port {1} --data \"{2}\"", serverScript, port, dataPath),
                         WorkingDirectory = appDir,
                         CreateNoWindow = true,
                         UseShellExecute = false,
@@ -195,20 +200,31 @@ namespace IndependentBooksLauncher
                 }
             }
 
-            string edge = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Microsoft", "Edge", "Application", "msedge.exe");
-            if (!File.Exists(edge))
+            string profileDir = Path.Combine(localAppData, "IndependentBooks", "profile");
+            try { if (!Directory.Exists(profileDir)) Directory.CreateDirectory(profileDir); } catch { }
+
+            string[] candidateBrowsers = new string[]
             {
-                edge = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Microsoft", "Edge", "Application", "msedge.exe");
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Microsoft", "Edge", "Application", "msedge.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Microsoft", "Edge", "Application", "msedge.exe"),
+                Path.Combine(localAppData, "Microsoft", "Edge", "Application", "msedge.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Google", "Chrome", "Application", "chrome.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Google", "Chrome", "Application", "chrome.exe"),
+                Path.Combine(localAppData, "Google", "Chrome", "Application", "chrome.exe")
+            };
+
+            string browserPath = null;
+            foreach (var b in candidateBrowsers)
+            {
+                if (File.Exists(b)) { browserPath = b; break; }
             }
 
-            if (File.Exists(edge))
+            if (browserPath != null)
             {
-                string profileDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "IndependentBooks", "profile");
-                try { if (!Directory.Exists(profileDir)) Directory.CreateDirectory(profileDir); } catch { }
                 Process.Start(new ProcessStartInfo
                 {
-                    FileName = edge,
-                    Arguments = string.Format("--user-data-dir=\"{0}\" --app=\"{1}\" --start-maximized", profileDir, url),
+                    FileName = browserPath,
+                    Arguments = string.Format("--user-data-dir=\"{0}\" --app=\"{1}\" --no-first-run --no-default-browser-check --start-maximized", profileDir, url),
                     UseShellExecute = true
                 });
             }
@@ -369,6 +385,19 @@ namespace IndependentBooksSetup
         {
             try
             {
+                string[] runningProcs = new string[] { "IndependentBooks", "app_server" };
+                foreach (var pName in runningProcs)
+                {
+                    try
+                    {
+                        foreach (var p in Process.GetProcessesByName(pName))
+                        {
+                            try { p.Kill(); p.WaitForExit(3000); } catch { }
+                        }
+                    }
+                    catch { }
+                }
+
                 string targetDir = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                     "Programs",
@@ -380,7 +409,24 @@ namespace IndependentBooksSetup
                     Directory.CreateDirectory(targetDir);
                 }
 
-                // Extract embedded zip payload
+                string fullTargetDir = Path.GetFullPath(targetDir);
+                if (!fullTargetDir.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                {
+                    fullTargetDir += Path.DirectorySeparatorChar;
+                }
+
+                // Ensure persistent user data directory exists
+                string persistentDataDir = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                    "IndependentBooks",
+                    "data"
+                );
+                if (!Directory.Exists(persistentDataDir))
+                {
+                    Directory.CreateDirectory(persistentDataDir);
+                }
+
+                // Extract embedded zip payload with Zip Slip path-traversal protection
                 var asm = Assembly.GetExecutingAssembly();
                 using (var stream = asm.GetManifestResourceStream("Payload"))
                 {
@@ -391,6 +437,12 @@ namespace IndependentBooksSetup
                             foreach (var entry in archive.Entries)
                             {
                                 string destPath = Path.Combine(targetDir, entry.FullName);
+                                string fullDestPath = Path.GetFullPath(destPath);
+                                if (!fullDestPath.StartsWith(fullTargetDir, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    throw new InvalidOperationException("Zip Slip path traversal blocked: " + entry.FullName);
+                                }
+
                                 if (string.IsNullOrEmpty(entry.Name))
                                 {
                                     Directory.CreateDirectory(destPath);

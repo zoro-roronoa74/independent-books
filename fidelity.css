@@ -982,8 +982,11 @@ footer button[data-action=unifiedSettings] {
 /* Custom Corporate Logo in Header */
 .brand {
   display: flex !important;
+  flex-direction: row !important;
   align-items: center !important;
   gap: 10px !important;
+  width: auto !important;
+  max-width: 220px !important;
   padding: 4px 14px !important;
   cursor: pointer;
 }
