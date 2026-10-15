@@ -35,7 +35,7 @@ def test_special_thanks_and_no_ad_slot(tmp_path):
             assert 'Sahil Mondal' in modal_text, "Author Sahil Mondal must appear"
             assert 'Antigravity' in modal_text, "Special thanks to Antigravity must appear"
             assert 'Omnirush' in modal_text, "Special thanks to Omnirush must appear"
-            assert 'REA' in modal_text, "Special thanks to REA must appear"
+            assert 'REA' not in modal_text, "REA should not appear in Special Thanks"
             
             # Close dialog
             page.click('.special-thanks-modal [data-action="close"]')

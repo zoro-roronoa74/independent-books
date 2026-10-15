@@ -1020,4 +1020,14 @@ footer button[data-action=unifiedSettings] {
   letter-spacing: 1px !important;
 }
 
+/* Native Desktop Look & Feel: Disable accidental text selection on UI frames */
+body, .ribbon, #keys, .titlebar, footer, .gateway, .report-table, .menu-box {
+  user-select: none;
+  -webkit-user-select: none;
+}
+input, textarea, select, [contenteditable="true"] {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
 

@@ -451,13 +451,6 @@ function showSpecialThanksDialog() {
             <small>For giving free AI models and high-performance inference</small>
           </div>
         </div>
-        <div class="thanks-item">
-          <div class="thanks-item-bullet"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,9 22,12 15,15 12,22 9,15 2,12 9,9"/></svg></div>
-          <div class="thanks-item-info">
-            <strong>REA</strong>
-            <small>Core reverse engineering, protocol interchange & architectural analysis</small>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -565,7 +558,7 @@ async function renderAgeing(f) {
 const ledgerRow=(name,l)=>({action:'ledgerReport',args:name,cells:[name,cents(l.signed_closing)>0n?money(cents(l.signed_closing)):'',cents(l.signed_closing)<0n?money(cents(l.signed_closing)):'' ]});
  function renderReport(f) {const d=state.data,t=f.name;const period=reportPeriod(f,d),live=d.vouchers.filter(v=>active(v)&&v.DATE>=period.from_date&&v.DATE<=period.to_date);let rows=[],headers=['Particulars','Debit','Credit'],total='';
  if(t==='Day Book'||t==='Voucher Register'||t==='Stock Transfers'||t==='Physical Stock Register'||t==='Sales Orders'||t==='Purchase Orders') {let vs=d.vouchers;if(f.period||f.month)vs=vs.filter(v=>v.DATE>=period.from_date&&v.DATE<=period.to_date);if(f.vtype)vs=vs.filter(v=>v.VOUCHERTYPENAME===f.vtype);if(f.month)vs=vs.filter(v=>v.DATE.startsWith(f.month));const type={'Stock Transfers':'Stock Journal','Physical Stock Register':'Physical Stock','Sales Orders':'Sales Order','Purchase Orders':'Purchase Order'}[t];if(type)vs=vs.filter(v=>v.VOUCHERTYPENAME===type);rows=voucherRows(vs);headers=['Date','Particulars','Vch Type','Vch No.','Amount'];total=money(vs.filter(active).reduce((s,v)=>s+amountOf(v),0n));}
- else if(t==='Trial Balance') {const openingStock=Object.values(d.stock_items||{}).reduce((s,x)=>s+cents(x.opening_balance),0n);rows=Object.entries(d.ledgers).map(([n,l])=>ledgerRow(n,l));if(openingStock>0n)rows.push({action:'report',args:'Stock Summary',cells:['Opening Stock',money(openingStock),'']});if(!f.ledgerWise){const totals={};for(const l of Object.values(d.ledgers)){const name=l.root_group_name||l.root_group;totals[name]=(totals[name]||0n)+cents(l.signed_closing);}if(openingStock>0n)totals['Current Assets']=(totals['Current Assets']||0n)+openingStock;rows=Object.entries(totals).map(([name,amount])=>({action:'groupReport',args:name,cells:[name,amount>0n?money(amount):'',amount<0n?money(amount):'']}));}const debit=Object.values(d.ledgers).reduce((s,l)=>s+(cents(l.signed_closing)>0n?cents(l.signed_closing):0n),0n)+openingStock;const credit=Object.values(d.ledgers).reduce((s,l)=>s+(cents(l.signed_closing)<0n?-cents(l.signed_closing):0n),0n);total=`${money(debit)}     ${money(credit)}`;}
+  else if(t==='Trial Balance') {const openingStock=Object.values(d.stock_items||{}).reduce((s,x)=>s+cents(x.opening_balance),0n);rows=Object.entries(d.ledgers).map(([n,l])=>ledgerRow(n,l));if(openingStock>0n)rows.push({action:'report',args:'Stock Summary',cells:['Opening Stock',money(openingStock),'']});if(!f.ledgerWise){const totals={};for(const l of Object.values(d.ledgers)){const name=l.root_group_name||l.root_group;totals[name]=(totals[name]||0n)+cents(l.signed_closing);}if(openingStock>0n)totals['Current Assets']=(totals['Current Assets']||0n)+openingStock;rows=Object.entries(totals).map(([name,amount])=>({action:'groupReport',args:name,cells:[name,amount>0n?money(amount):'',amount<0n?money(amount):'']}));}const debit=Object.values(d.ledgers).reduce((s,l)=>s+(cents(l.signed_closing)>0n?cents(l.signed_closing):0n),0n)+openingStock;const credit=Object.values(d.ledgers).reduce((s,l)=>s+(cents(l.signed_closing)<0n?-cents(l.signed_closing):0n),0n);const diff=debit-credit;if(diff!==0n){rows.push({action:'',args:'',cells:['Diff. in Opening Balances',diff<0n?money(-diff):'',diff>0n?money(diff):'']});}const finalDebit=debit>credit?debit:credit;const finalCredit=debit>credit?debit:credit;total=`${money(finalDebit)}     ${money(finalCredit)}`;}
  else if(t==='Group Summary'||t==='Cash/Bank Book(s)'||t==='GST Ledger Summary') {const group=f.group;function under(g){const seen=new Set();while(g&&!seen.has(g)){if(g===group)return true;seen.add(g);g=d.group_records[g]?.parent;}return false;}rows=Object.entries(d.ledgers).filter(([n,l])=>group?under(l.parent):t==='GST Ledger Summary'?(l.group_type||l.parent)==='Duties & Taxes':['Cash-in-hand','Bank Accounts','Bank OCC A/c','Bank OD A/c'].includes(l.group_type||l.parent)).map(([n,l])=>ledgerRow(n,l));}
  else if(t==='Ledger Monthly Summary'){const name=f.ledger;headers=['Particulars','Debit','Credit'];const months={};for(const v of live.filter(v=>!nonAccounting.has(baseType(v.VOUCHERTYPENAME))))for(const e of listOf(v))if(e.LEDGERNAME===name){const month=v.DATE.slice(0,6),a=signedEntry(e);months[month]||={dr:0n,cr:0n};if(a>0n)months[month].dr+=a;else months[month].cr-=a;}rows=Object.keys(months).sort().map(m=>({action:'ledgerMonth',args:name+'|'+m,cells:[new Date(Number(m.slice(0,4)),Number(m.slice(4))-1).toLocaleDateString('en',{month:'long',year:'numeric'}),money(months[m].dr),money(months[m].cr)]}));}
  else if(t==='Ledger Vouchers'||t==='Bank Reconciliation') {const name=f.ledger,summary=ledgerWindow(d,name,period);headers=['Date','Particulars','Vch Type','Vch No.','Debit','Credit'];if(t==='Bank Reconciliation')headers.push('Bank date');let debit=0n,credit=0n;rows=summary.vouchers.map(v=>{const amount=listOf(v).filter(e=>e.LEDGERNAME===name).reduce((s,e)=>s+signedEntry(e),0n);if(amount>0n)debit+=amount;else credit-=amount;const row={action:'editVoucher',args:v.MASTERID,cells:[shownDate(v.DATE),listOf(v).filter(e=>e.LEDGERNAME!==name).map(e=>e.LEDGERNAME).join(', '),v.VOUCHERTYPENAME,v.VOUCHERNUMBER,amount>0n?money(amount):'',amount<0n?money(amount):'']};if(t==='Bank Reconciliation')row.cells.push(shownDate(v.BANKDATE||''));return row;});total=`Opening: ${money(summary.opening)} ${summary.opening>=0n?'Dr':'Cr'}    Closing: ${money(summary.closing)} ${summary.closing>=0n?'Dr':'Cr'}`;}
@@ -689,6 +682,26 @@ const ledgerRow=(name,l)=>({action:'ledgerReport',args:name,cells:[name,cents(l.
       const sumSide = roots => roots.reduce((s, node) => s + abs(cents(node.amount)), 0n);
       leftTotal = sumSide(leftRoots);
       rightTotal = sumSide(rightRoots);
+      if (leftTotal !== rightTotal) {
+        const balDiff = abs(leftTotal - rightTotal);
+        if (leftTotal < rightTotal) {
+          leftRoots.push({
+            name: 'Diff. in Opening Balances',
+            amount: (Number(balDiff) / 100).toFixed(2),
+            children: [],
+            node_type: 'calculated'
+          });
+          leftTotal = rightTotal;
+        } else {
+          rightRoots.push({
+            name: 'Diff. in Opening Balances',
+            amount: (Number(balDiff) / 100).toFixed(2),
+            children: [],
+            node_type: 'calculated'
+          });
+          rightTotal = leftTotal;
+        }
+      }
     }
     const diff = abs(leftTotal - rightTotal);
 
@@ -905,6 +918,22 @@ case 'doPrintConfigureFromPreview':closePrintPreview();return openPrintConfigure
  case 'basis':return note(`Period: ${shownDate(d.from_date)} to ${shownDate(d.to_date)}. Stock uses moving weighted average cost.`);case 'view':return action('report',frame().name==='Trial Balance'?'Balance Sheet':'Trial Balance');case 'capability':return errorBox(args==='TallyCapital'?'TallyCapital is an external service and is not connected in this independent application.':args+' filing and statutory calculation are not implemented.');case 'checkUpdate':{try{const res=await api('/api/check_update');note(`${res.changelog} (Version ${res.current_version})`);}catch(e){note(e.message,true);}return;}
 case 'help':return showDialog('Help','<p>Arrow keys select. Enter opens. Esc returns to the previous screen.</p><p>Ctrl+A accepts. Alt+G opens Go To. F2 changes period/date. F3 selects company. F4–F9 select vouchers.</p><p>Data → Backup saves all companies. Import previews XML before committing.</p><div style="margin:12px 0;"><button type="button" class="list-row" data-action="checkUpdate">Check for Updates</button></div><div class="dialog-buttons"><button data-action="close">Close</button></div>');
 }}
+// Native Desktop Experience: Disable browser right-click context menu
+document.addEventListener('contextmenu', event => {
+  event.preventDefault();
+});
+
+// Disable browser Developer Tools and reload shortcuts
+document.addEventListener('keydown', event => {
+  if (
+    (event.ctrlKey && event.shiftKey && ['I', 'i', 'J', 'j', 'C', 'c'].includes(event.key)) ||
+    (event.ctrlKey && ['u', 'U', 'r', 'R'].includes(event.key)) ||
+    (event.key === 'F5')
+  ) {
+    event.preventDefault();
+  }
+});
+
  document.addEventListener('click',async event=>{const trendBtn=event.target.closest('button[data-trend]');if(trendBtn){event.preventDefault();state.activeTrendSpan=trendBtn.dataset.trend;document.querySelectorAll('.trend-toggles button').forEach(b=>b.classList.toggle('active',b.dataset.trend===state.activeTrendSpan));const m=state.dashboardMetrics;if(m&&m.trend){const chartEl=document.querySelector('.trend-chart');if(chartEl)chartEl.innerHTML=renderTrendSvg(m.trend[state.activeTrendSpan]||[],state.activeTrendSpan);}return;}const floatingOpt=event.target.closest('.floating-option');if(floatingOpt&&frame().kind==='voucher'){event.preventDefault();return selectVoucherLookup(floatingOpt.dataset.lookupValue);}const floatingDropdown=document.getElementById('floating-lookup-dropdown');if(floatingDropdown&&!floatingDropdown.contains(event.target)&&!isVoucherLookupControl(event.target)&&!event.target.closest('.voucher-lookup-panel')&&!event.target.closest('#keys')){closeVoucherLookup();}const allocation=event.target.closest('[data-action="allocationContinue"]');if(allocation){event.preventDefault();event.stopImmediatePropagation();try{await commitAllocationDialog();}catch(error){errorBox(error.message);}return;}const lookupOption=event.target.closest('[data-lookup-value]');if(lookupOption&&frame().kind==='voucher'){event.preventDefault();return selectVoucherLookup(lookupOption.dataset.lookupValue);}const choice=event.target.closest('[data-choice]');if(choice){const callback=state.dialog?.choose,name=choice.dataset.choice;closeDialog();try{await callback?.(name);}catch(error){errorBox(error.message);}return;}const el=event.target.closest('[data-action]');if(!el||el.disabled)return;event.preventDefault();try{await action(el.dataset.action,el.dataset.args||'',el);}catch(error){errorBox(error.message);}});
  document.addEventListener('input',event=>{if(event.target.id==='voucher-lookup-search'&&state.lookup){refreshVoucherLookup(event.target.value);return;}if(event.target.closest('#edit-form')&&state.draft){state.draft.dirty=true;if(!['narration','date','number','optional','cheque','bankdate'].includes(event.target.name))state.draft.accountingDirty=true;if(event.target.closest('.inventory-entry')&&['qty','rate'].includes(event.target.name)){const row=event.target.closest('tr'),q=Number(row.querySelector('[name=qty]').value),r=Number(row.querySelector('[name=rate]').value);if(Number.isFinite(q*r))row.querySelector('[name=itemamount]').value=productMoney(row.querySelector('[name=qty]').value,row.querySelector('[name=rate]').value);}updateTotal();}});
  document.addEventListener('change',event=>{if(event.target.closest('#edit-form')&&state.draft){state.draft.dirty=true;if(!['narration','date','number','optional','cheque','bankdate'].includes(event.target.name))state.draft.accountingDirty=true;if(event.target.name==='item'){const item=state.data.stock_items[event.target.value];const row=event.target.closest('tr');if(row){const u=row.querySelector('.unit');if(u)u.textContent=item?.base_units||'';const base=state.draft?.base;const isSales=['Sales','Credit Note','Delivery Note'].includes(base);const isPurchase=['Purchase','Debit Note','Receipt Note'].includes(base);const stdRate=isSales?item?.standard_selling_rate:(isPurchase?item?.standard_purchase_rate:'');const rateInput=row.querySelector('[name=rate]');if(rateInput&&stdRate){rateInput.value=stdRate;const qtyInput=row.querySelector('[name=qty]');const q=Number(qtyInput?.value||0), r=Number(stdRate);if(Number.isFinite(q*r)&&q>0){const amtInput=row.querySelector('[name=itemamount]');if(amtInput)amtInput.value=productMoney(qtyInput.value,stdRate);}if(typeof updateBillingRow==='function')updateBillingRow(row);}}}if(event.target.name==='party')updatePaymentBalance();updateTotal();}});
