@@ -1,0 +1,21 @@
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+/dist/
+/nuitka_dist/
+/data/
+/__pycache__/
+*.pyc
+*.pyd
+*.dll
+*.exe
+.pytest_cache/
+*.sqlite3*
+*.lock
+*.dist
+*.build
+openpyxl/
+et_xmlfile/
+numpy/
+numpy.libs/
+PIL/
+runtime/

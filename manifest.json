@@ -1,0 +1,24 @@
+{
+  "name": "Independent Books",
+  "short_name": "Independent Books",
+  "description": "Financial & Inventory Accounting System",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d1b13",
+  "theme_color": "#1b4332",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "747x620",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 24x24 32x32 48x48 64x64 128x128 256x256",
+      "type": "image/x-icon",
+      "purpose": "any"
+    }
+  ]
+}
