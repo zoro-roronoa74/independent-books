@@ -1,0 +1,47 @@
+name: 🐛 Bug Report
+description: Report an issue or accounting discrepancy in Independent Books
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue! Please ensure you do NOT share any real business personal data or confidential ledger numbers.
+  - type: input
+    id: version
+    attributes:
+      label: Application Version / Commit Hash
+      description: What version or commit are you running?
+      placeholder: "e.g., v1.0.0 or commit 6b10a97"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - Windows 11 (64-bit)
+        - Windows 10 (64-bit)
+        - macOS (Apple Silicon / Intel)
+        - Linux
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: accounting_discrepancy
+    attributes:
+      label: Accounting Details (if applicable)
+      description: If this involves a mathematical or ledger balance difference, describe the expected debit/credit vs actual.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Exact steps to reproduce the behavior (e.g. 1. Go to Gateway -> Vouchers, 2. Press F8 Sales...).
+    validations:
+      required: true

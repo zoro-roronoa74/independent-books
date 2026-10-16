@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Independent Books — free offline accounting software for Windows</title>
+<meta name="description" content="Independent Books is free desktop accounting software for Windows. Companies, ledgers, vouchers, inventory, Trial Balance and Balance Sheet — all stored locally. No licence fee, no subscription, no sign-in, no telemetry. Business automation tools on request.">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="Independent Books — free offline accounting software">
+<meta property="og:description" content="Your whole ledger, on your machine, for free. No licence fee, no subscription, no telemetry.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+</head>
+<body>
+
+<a class="skip" href="#download">Skip to the download</a>
+
+<!-- ======================= header ======================= -->
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Independent Books home">
+    <img class="brand__logo" src="assets/logo.png" alt="" width="36" height="36" aria-hidden="true">
+    <span class="brand__text"><span>Independent</span><strong>BOOKS</strong></span>
+  </a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#download">Free download</a>
+    <a href="#inside">Inside the app</a>
+    <a href="#automation">Automation tools</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn--primary btn--sm" href="#download">Get it free</a>
+</header>
+
+<main id="top">
+
+  <!-- ======================= hero ======================= -->
+  <section class="hero">
+    <div class="hero__copy">
+      <p class="eyebrow">Free software · Windows · 100% offline</p>
+      <h1>Own your books, <span class="hl">not a subscription</span>.</h1>
+      <p class="lede">
+        <strong>Independent Books</strong> is free desktop accounting software that runs entirely
+        on your PC. Create companies, post vouchers, track inventory, and read your Trial Balance
+        and Balance Sheet from a local database — not from somebody else's server.
+      </p>
+      <p class="free-note">
+        <strong>Free</strong> — no licence fee, no monthly plan, no trial timer, no features held
+        back behind a paywall.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn--primary btn--lg" href="#download">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
+          Get it free
+        </a>
+        <a class="btn btn--quiet btn--lg" href="#automation">See the automation tools</a>
+      </div>
+      <ul class="hero__facts">
+        <li><b>Free</b><span>licence, forever</span></li>
+        <li><b>Windows 10/11</b><span>64-bit</span></li>
+        <li><b>Local SQLite</b><span>a file you own</span></li>
+        <li><b>No telemetry</b><span>nothing leaves the PC</span></li>
+      </ul>
+    </div>
+
+    <div class="hero__visual" id="heroVisual">
+      <div class="stage" id="stage">
+        <div class="app-window">
+          <div class="app-ribbon">
+            <span class="app-brand"><span>Independent</span><strong>BOOKS</strong></span>
+            <span class="app-menu">
+              <i>K</i> Company <i>Y</i> Data <i>O</i> Import <i>E</i> Export
+            </span>
+          </div>
+          <div class="app-titlebar"><strong>Gateway of Books</strong><span>Local · 127.0.0.1</span></div>
+          <div class="app-body">
+            <ul class="app-side">
+              <li class="is-active">Gateway of Books</li>
+              <li>Masters</li>
+              <li>Transactions</li>
+              <li>Reports</li>
+              <li>Inventory</li>
+            </ul>
+            <div class="app-main">
+              <div class="app-row app-row--head"><span>Particulars</span><span>Debit</span><span>Credit</span></div>
+              <div class="app-row"><span>Opening Balance</span><span>1,24,500.00</span><span></span></div>
+              <div class="app-row"><span>Sales Accounts</span><span></span><span>86,200.00</span></div>
+              <div class="app-row"><span>Purchase Accounts</span><span>42,750.00</span><span></span></div>
+              <div class="app-row"><span>Bank / Cheque</span><span>18,940.00</span><span></span></div>
+              <div class="app-row app-row--total"><span>Difference</span><span>0.00</span><span>0.00</span></div>
+            </div>
+          </div>
+          <div class="app-footer">
+            <span><i>Q</i> Quit</span><span><i>A</i> Accept</span><span><i>D</i> Delete</span>
+            <span class="app-footer__tail"><i>F12</i> Setting</span>
+          </div>
+        </div>
+
+        <div class="float-card float-card--voucher">
+          <span class="float-card__label">Voucher · Receipt</span>
+          <span class="float-card__value">₹ 24,000.00</span>
+        </div>
+        <div class="float-card float-card--balance">
+          <span class="float-card__label">Licence cost</span>
+          <span class="float-card__value">₹ 0.00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= download (highlight) ======================= -->
+  <section class="download" id="download">
+    <div class="download__card">
+      <div class="download__head">
+        <p class="eyebrow">Free accounting software</p>
+        <h2>Free to download. Free to keep. Free to use forever.</h2>
+        <p class="lede">
+          No licence fee. No subscription. No per-company charge, no seat limit and no feature
+          that unlocks only after you pay. Install it once and your books are yours.
+        </p>
+      </div>
+
+      <div class="download__grid">
+        <div class="download__action">
+          <a class="btn btn--primary btn--download" id="downloadBtn"
+             href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe" download>
+            <span class="btn__icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
+            </span>
+            <span class="btn__text">
+              <b>Download for Windows — free</b>
+              <small>IndependentBooksSetup.exe · 8.6 MB</small>
+            </span>
+          </a>
+          <p class="download__note">
+            Windows 10 or 11 (64-bit). Nothing to sign up for, no key to enter and no card asked
+            for. A runtime is bundled, so there is nothing else to install — and it works with the
+            network unplugged.
+          </p>
+        </div>
+
+        <dl class="download__meta">
+          <div><dt>Price</dt><dd>Free — forever</dd></div>
+          <div><dt>Licence fee</dt><dd>None</dd></div>
+          <div><dt>Subscription</dt><dd>None</dd></div>
+          <div><dt>File</dt><dd>IndependentBooksSetup.exe</dd></div>
+          <div><dt>Size</dt><dd>8,986,112 bytes (8.6 MB)</dd></div>
+          <div><dt>Platform</dt><dd>Windows 10 / 11 · 64-bit</dd></div>
+          <div><dt>Build</dt><dd>15 October 2026</dd></div>
+          <div><dt>Your data</dt><dd>A local SQLite file you own</dd></div>
+          <div><dt>Telemetry</dt><dd>None</dd></div>
+          <div class="download__hash">
+            <dt>SHA-256</dt>
+            <dd><code id="hashValue">85cfca2c06cc654e23b410e302946975792b0503e9793568e7e9122f2b1208c7</code></dd>
+            <button class="copy" type="button" id="copyHash" aria-label="Copy SHA-256 checksum">Copy</button>
+          </div>
+        </dl>
+      </div>
+
+      <div class="free-grid">
+        <div class="free-point">
+          <b>No licence fee</b>
+          <p>You do not buy it, rent it, or activate it. There is no key and no expiry date.</p>
+        </div>
+        <div class="free-point">
+          <b>No subscription</b>
+          <p>Nothing to renew, nothing that stops working if a card expires.</p>
+        </div>
+        <div class="free-point">
+          <b>No locked features</b>
+          <p>Every screen in the build is available to you, including reports and export.</p>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li><span class="steps__n">1</span><div><b>Download it</b><p>Grab <code>IndependentBooksSetup.exe</code> with the button above — 8.6 MB, nothing to pay.</p></div></li>
+        <li><span class="steps__n">2</span><div><b>Install it</b><p>Run the installer. If Windows SmartScreen appears, choose <em>More info → Run anyway</em> — the build is unsigned.</p></div></li>
+        <li><span class="steps__n">3</span><div><b>Create your company</b><p>Open the app and set your financial period. The database starts empty by design — no sample parties, no invented amounts.</p></div></li>
+      </ol>
+
+      <p class="download__already">
+        Already installed? Open the <strong>Independent Books</strong> shortcut on your Desktop.
+        The launcher serves the app only on <code>127.0.0.1</code> and picks a free port itself.
+        If the checksum above does not match your file, delete it and download again.
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================= inside the app ======================= -->
+  <section class="inside" id="inside">
+    <div class="section-head">
+      <p class="eyebrow">Inside the app</p>
+      <h2>Real double-entry bookkeeping, not a demo dashboard</h2>
+      <p class="lede">Everything below is implemented and working in the current build — and all of it is free.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Companies &amp; masters</h3>
+        <p>Create and alter companies, ledgers, groups, stock items, units, godowns, voucher types, stock groups and categories, cost categories and centres, and currencies.</p>
+      </article>
+      <article class="card">
+        <h3>Vouchers &amp; inventory</h3>
+        <p>Accounting vouchers, invoice entry, inventory vouchers, stable alteration, cancellation and deletion. Optional vouchers stay outside balances. Negative stock is rejected.</p>
+      </article>
+      <article class="card">
+        <h3>Statements that reconcile</h3>
+        <p>Day Book, Trial Balance, ledger and group drill-downs, monthly registers, Stock Summary, bill references and outstandings, statistics and a dashboard.</p>
+      </article>
+      <article class="card">
+        <h3>Honest Balance Sheet &amp; P&amp;L</h3>
+        <p>Derived views show the <em>actual</em> difference instead of inventing a balancing figure. Inventory uses moving weighted average; returns use the prevailing cost.</p>
+      </article>
+      <article class="card">
+        <h3>Bring your old books with you</h3>
+        <p>Import masters and vouchers from XML with a preview and an atomic commit — no half-saved books. Multi-file bundles import dependencies first. Export back to XML, CSV or HTML.</p>
+      </article>
+      <article class="card">
+        <h3>Keyboard-fast, exact money</h3>
+        <p>Familiar navigation with <kbd>F2</kbd>/<kbd>F3</kbd>, <kbd>F4</kbd>–<kbd>F10</kbd>, <kbd>Alt</kbd>+<kbd>G</kbd> and <kbd>Ctrl</kbd>+<kbd>A</kbd>. Amounts are stored exactly and summed as integers, never as floating-point guesses.</p>
+      </article>
+      <article class="card">
+        <h3>Yours, privately</h3>
+        <p>Books live in a local SQLite file with committed snapshots. Full JSON backup and restore, with a preview before anything is overwritten. No telemetry, no remote database, no sign-in.</p>
+      </article>
+      <article class="card">
+        <h3>Print &amp; share</h3>
+        <p>Dedicated voucher and report printing, real report exports, and a clickable calendar date picker alongside typed date fields.</p>
+      </article>
+    </div>
+
+    <aside class="straight-talk">
+      <h3>Straight talk about the limits</h3>
+      <p>
+        This is an independent accounting engine, not a clone of any commercial package, and it
+        does not read other vendors' proprietary data files. GST return filing, e-invoice and
+        e-way bills, payroll, TDS/TCS, multi-currency conversion, connected banking, FIFO or batch
+        valuation, price levels, and manufacturing/BOM are <strong>not implemented yet</strong>.
+        Migration uses open XML exports. We would rather tell you that up front than let you
+        discover it after installing.
+      </p>
+    </aside>
+  </section>
+
+  <!-- ======================= business automation tools ======================= -->
+  <section class="automation" id="automation">
+    <div class="auto-shell">
+      <div class="section-head">
+        <p class="eyebrow">Business automation tools</p>
+        <h2>Put the repetitive half of bookkeeping on autopilot</h2>
+        <p class="lede">
+          Half of accounting is judgement: posting, approving, deciding. The other half is copying
+          numbers from one place to another. These tools take the second half — so month-end becomes
+          a review instead of a re-typing session. Everything still waits for your yes.
+        </p>
+      </div>
+
+      <div class="auto-steps">
+        <div class="auto-step">
+          <span class="auto-step__n">1</span>
+          <h3>Tell us the chore</h3>
+          <p>One mail describing the task you would happily never do again is enough to start.</p>
+        </div>
+        <div class="auto-step">
+          <span class="auto-step__n">2</span>
+          <h3>We fit it to your books</h3>
+          <p>Your workflows, your reports, your formats — not a fixed template you have to bend to.</p>
+        </div>
+        <div class="auto-step">
+          <span class="auto-step__n">3</span>
+          <h3>You approve, it repeats</h3>
+          <p>Every automation drafts and flags. Nothing posts silently into your ledger.</p>
+        </div>
+      </div>
+
+      <div class="auto-grid">
+        <article class="auto-card">
+          <h3>Your invoices file themselves</h3>
+          <p>Drop in bills, invoices or scans and get draft vouchers waiting for a yes or a quick fix. No more typing the same numbers twice.</p>
+          <span class="tag">Data entry relief</span>
+        </article>
+        <article class="auto-card">
+          <h3>Reconciliation done before your coffee</h3>
+          <p>Statement lines matched against your ledger, with anything odd flagged for a human instead of quietly guessed away.</p>
+          <span class="tag">Month-end</span>
+        </article>
+        <article class="auto-card">
+          <h3>The rent never misses a date</h3>
+          <p>Rent, subscriptions, EMIs and salaries posted on a timetable, with a tidy review queue for anything that changed value.</p>
+          <span class="tag">Always on time</span>
+        </article>
+        <article class="auto-card">
+          <h3>Stop chasing the same payment twice</h3>
+          <p>Outstanding bills followed up by email or WhatsApp, drawn straight from bill references and ageing — politely, and on schedule.</p>
+          <span class="tag">Receivables</span>
+        </article>
+        <article class="auto-card">
+          <h3>Your numbers arrive unbidden</h3>
+          <p>Day Book summary, cash position and ageing delivered to your inbox on the timetable you choose.</p>
+          <span class="tag">Reporting</span>
+        </article>
+        <article class="auto-card">
+          <h3>Two systems, one story</h3>
+          <p>Scheduled export and import between your existing software and these books, so the two ledgers stop drifting apart.</p>
+          <span class="tag">Migration &amp; sync</span>
+        </article>
+        <article class="auto-card">
+          <h3>Clean books before you move</h3>
+          <p>Duplicate masters, inconsistent groupings and broken postings found before they poison a year of reports.</p>
+          <span class="tag">Before you migrate</span>
+        </article>
+        <article class="auto-card">
+          <h3>Or describe your own chore</h3>
+          <p>A supplier portal, a spreadsheet ritual, a print-and-file routine — if it repeats, there is a good chance it can run itself.</p>
+          <span class="tag">Built to order</span>
+        </article>
+      </div>
+
+      <div class="mail">
+        <div class="mail__copy">
+          <h3>Tell us the chore you hate most</h3>
+          <p>
+            One short note is enough: your business, the software you use today, and the task you
+            would love to never do again. You will get scope, effort and price back — no obligation
+            and no sales call.
+          </p>
+        </div>
+        <div class="mail__action">
+          <a class="btn btn--primary btn--lg" id="mailBtn" href="mailto:mosoassisstant@gmail.com?subject=Business%20automation%20%E2%80%94%20the%20chore%20I%20want%20to%20stop%20doing&amp;body=Hi%20Moso%2C%0D%0A%0D%0ABusiness%20name%3A%20%0D%0AType%20of%20business%3A%20%0D%0ASoftware%20I%20use%20today%3A%20%0D%0AThe%20chore%20I%20want%20automated%3A%20%0D%0AHow%20often%20it%20happens%3A%20%0D%0A%0D%0AThanks%2C">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+            Mail us
+          </a>
+          <button class="email-copy" type="button" id="copyEmail" data-email="mosoassisstant@gmail.com">
+            <span class="email-copy__label">Email</span>
+            <span class="email-copy__value">mosoassisstant@gmail.com</span>
+            <span class="email-copy__hint" aria-live="polite">Copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FAQ ======================= -->
+  <section class="faq" id="faq">
+    <div class="section-head">
+      <p class="eyebrow">Questions</p>
+      <h2>The things people ask before installing</h2>
+    </div>
+    <div class="faq__list">
+      <details open>
+        <summary>Is it really free? What is the catch?</summary>
+        <p>It is free. No licence fee, no subscription, no seat limit, no per-company charge, and no feature held behind a paywall. The optional business automation tools are a separate, paid service we build with you — if you never ask for one, you never pay anything.</p>
+      </details>
+      <details>
+        <summary>Is my accounting data sent anywhere?</summary>
+        <p>No. Books are stored in a local SQLite file on your PC, the app server listens only on <code>127.0.0.1</code>, and the build ships with no telemetry, no sign-in, no AI provider and no remote database. If you never run an automation tool, nothing leaves your machine.</p>
+      </details>
+      <details>
+        <summary>Do I need internet to use it?</summary>
+        <p>No. The desktop app works fully offline and bundles its own runtime, so nothing else needs installing and nothing needs to phone home.</p>
+      </details>
+      <details>
+        <summary>Can I move my books from my current software?</summary>
+        <p>Yes, through open XML. Export your masters and vouchers from your current system, then use <strong>Import → Preview</strong> in Independent Books, select the related files together, review the counts and warnings, and commit. Import compatibility with every vendor's schema has not been verified against every configuration — so test on a copy first.</p>
+      </details>
+      <details>
+        <summary>What happens to my books if I reinstall?</summary>
+        <p>Installed builds keep your database in your local app data folder, so reinstalling or updating the application does not wipe your company. <strong>Data → Backup</strong> exports every company to a validated, portable JSON file you can restore later.</p>
+      </details>
+      <details>
+        <summary>Why does Windows warn me when I install it?</summary>
+        <p>The installer is not code-signed, so SmartScreen shows an <em>unknown publisher</em> warning. That is a signing certificate we have not bought, not a sign of anything wrong with your books.</p>
+      </details>
+      <details>
+        <summary>How do the automation tools get my data?</summary>
+        <p>Only how you choose. Most setups read a copy of your backup file, a bank statement export, or a watched folder — and every automation writes drafts for you to approve. Mail us and we will describe the exact data path before anything starts.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <div class="footer__brandline">
+        <img class="brand__logo" src="assets/logo.png" alt="" width="32" height="32" aria-hidden="true">
+        <span class="brand__text"><span>Independent</span><strong>BOOKS</strong></span>
+      </div>
+      <p>Free offline accounting software for independent businesses, plus business automation tools built around your books.</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#download">Free download</a>
+      <a href="#inside">Inside the app</a>
+      <a href="#automation">Automation tools</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:mosoassisstant@gmail.com">mosoassisstant@gmail.com</a>
+    </nav>
+  </div>
+  <div class="footer__bottom">
+    <p>© <span id="year">2026</span> Independent Books · Free to use, offline by design.</p>
+    <p class="footer__note">Independent software. Your books stay on your machine.</p>
+  </div>
+</footer>
+
+<!-- ============ AI offer bar — revealed once the visitor scrolls a little ============ -->
+<aside class="ai-bar" id="aiBar" aria-label="AI for your business">
+  <span class="ai-bar__badge">AI for business</span>
+  <p class="ai-bar__pitch">
+    Want AI working inside your business? It can <em>cut your costs in half</em> and
+    <em>double your productivity</em>. Mail us now and leave your contact details.
+  </p>
+  <div class="ai-bar__action">
+    <a class="ai-btn" id="aiBtn" href="mailto:mosoassisstant@gmail.com?subject=AI%20for%20my%20business%20%E2%80%94%20contact%20me&amp;body=Hi%20Moso%2C%0D%0A%0D%0AI%20want%20to%20use%20AI%20in%20my%20business.%0D%0A%0D%0AName%3A%20%0D%0ABusiness%20name%3A%20%0D%0APhone%20%2F%20email%3A%20%0D%0AWhat%20my%20business%20does%3A%20%0D%0AWhere%20I%20want%20AI%20to%20help%3A%20%0D%0A%0D%0AThanks%2C">
+      Mail us now
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+    <span class="ai-bar__addr">mosoassisstant@gmail.com</span>
+  </div>
+  <button class="ai-bar__close" id="aiClose" type="button" aria-label="Dismiss this message">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</aside>
+
+<script src="app.js" defer></script>
+</body>
+</html>
