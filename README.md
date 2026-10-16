@@ -16,7 +16,8 @@
   <p align="center">
     <a href="https://github.com/zoro-roronoa74/independent-books/stargazers"><img src="https://img.shields.io/github/stars/zoro-roronoa74/independent-books?style=for-the-badge&logo=github&color=38bdf8" alt="GitHub Stars" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge" alt="MIT License" /></a>
-    <a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe"><img src="https://img.shields.io/badge/Download_Installer-8.6_MB-6366f1?style=for-the-badge&logo=windows" alt="Windows Installer" /></a>
+    <a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe"><img src="https://img.shields.io/badge/Download_Windows-8.6_MB-6366f1?style=for-the-badge&logo=windows" alt="Windows Installer" /></a>
+    <a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.dmg"><img src="https://img.shields.io/badge/Download_macOS-14.3_MB-000000?style=for-the-badge&logo=apple" alt="macOS DMG Installer" /></a>
     <img src="https://img.shields.io/badge/Platform-Windows_10%2F11_%7C_macOS-a855f7?style=for-the-badge" alt="Platforms" />
     <img src="https://img.shields.io/badge/Privacy-100%25_Air--Gapped-f43f5e?style=for-the-badge" alt="100% Offline" />
     <img src="https://img.shields.io/badge/CI-Passing_100%25-10b981?style=for-the-badge&logo=github-actions" alt="Build Status" />
@@ -24,7 +25,8 @@
 
   <p align="center">
     <a href="https://independent-books.pages.dev"><b>🌐 Official Website</b></a> •
-    <a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe"><b>⬇️ Download for Windows (8.6 MB)</b></a> •
+    <a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe"><b>⬇️ Windows (8.6 MB)</b></a> •
+    <a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.dmg"><b>🍎 macOS DMG (14.3 MB)</b></a> •
     <a href="#-quick-start"><b>⚡ Quick Start</b></a> •
     <a href="#-key-features"><b>✨ Features</b></a> •
     <a href="#-keyboard-shortcuts"><b>⌨️ Shortcuts</b></a> •
@@ -114,14 +116,19 @@ Most modern accounting software forces businesses into expensive cloud subscript
 ### 🍎 Apple macOS
 Independent Books supports macOS with dedicated user data storage in `~/Library/Application Support/IndependentBooks/`:
 
-1. **One-Command Launch**:
+1. **Direct DMG Installer (Recommended — Universal Apple Silicon & Intel)**:
+   - Download **[IndependentBooksSetup.dmg (14.3 MB)](https://independent-books.pages.dev/downloads/IndependentBooksSetup.dmg)** (or from [GitHub Releases](https://github.com/zoro-roronoa74/independent-books/releases)).
+   - Open `IndependentBooksSetup.dmg` and drag **Independent Books** into your `Applications` folder.
+   - Launch and enjoy 100% offline accounting with identical Tally Prime keyboard muscle memory!
+
+2. **One-Command Shell Runner**:
    ```bash
    git clone https://github.com/zoro-roronoa74/independent-books.git
    cd independent-books
    chmod +x launch_mac.sh
    ./launch_mac.sh
    ```
-2. **Build Standalone DMG Installer** (Optional):
+3. **Build Standalone DMG Installer from Source**:
    ```bash
    chmod +x build_macos.sh
    ./build_macos.sh
