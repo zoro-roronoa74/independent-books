@@ -1,6 +1,12 @@
 <div align="center">
 
-  <img src="docs/assets/logo.png" alt="Independent Books Logo" width="140" height="140" />
+  <a href="https://independent-books.pages.dev">
+    <img src="docs/assets/social-preview.png" alt="Independent Books — The Open-Source, Air-Gapped Tally Prime Alternative" width="100%" />
+  </a>
+
+  <br><br>
+
+  <img src="docs/assets/logo.png" alt="Independent Books Logo" width="110" height="110" />
 
   # Independent Books ⚡
 
