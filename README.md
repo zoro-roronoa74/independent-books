@@ -264,6 +264,14 @@ We welcome contributions from developers, accountants, and UI designers!
 
 ---
 
+## 👨‍💻 Author & Contact
+
+- **Lead Developer**: Sahil Mondal
+- **Email**: [mossoassistant@gmail.com](mailto:mossoassistant@gmail.com)
+- **Instagram**: [@wilde_sahil](https://www.instagram.com/wilde_sahil/)
+
+---
+
 ## 📄 License
 
 Independent Books is free and open-source software licensed under the **[MIT License](LICENSE)**. You are free to use it for personal, commercial, or institutional accounting without any fees or restrictions.
