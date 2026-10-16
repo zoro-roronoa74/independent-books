@@ -8,7 +8,7 @@
   *Fast, keyboard-driven double-entry bookkeeping with 100% offline SQLite storage, zero subscriptions, and zero telemetry.*
 
   <p align="center">
-    <a href="https://github.com/mosoassisstant/independent-books/stargazers"><img src="https://img.shields.io/github/stars/mosoassisstant/independent-books?style=for-the-badge&logo=github&color=38bdf8" alt="GitHub Stars" /></a>
+    <a href="https://github.com/zoro-roronoa74/independent-books/stargazers"><img src="https://img.shields.io/github/stars/zoro-roronoa74/independent-books?style=for-the-badge&logo=github&color=38bdf8" alt="GitHub Stars" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge" alt="MIT License" /></a>
     <a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe"><img src="https://img.shields.io/badge/Download_Installer-8.6_MB-6366f1?style=for-the-badge&logo=windows" alt="Windows Installer" /></a>
     <img src="https://img.shields.io/badge/Platform-Windows_10%2F11_%7C_macOS-a855f7?style=for-the-badge" alt="Platforms" />
@@ -113,7 +113,7 @@ Independent Books runs directly on standard Python 3.9+ with zero required exter
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/mosoassisstant/independent-books.git
+git clone https://github.com/zoro-roronoa74/independent-books.git
 cd independent-books
 
 # 2. Launch the application server
