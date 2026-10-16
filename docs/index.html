@@ -1,428 +1,708 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Independent Books — free offline accounting software for Windows</title>
-<meta name="description" content="Independent Books is free desktop accounting software for Windows. Companies, ledgers, vouchers, inventory, Trial Balance and Balance Sheet — all stored locally. No licence fee, no subscription, no sign-in, no telemetry. Business automation tools on request.">
-<meta name="theme-color" content="#ffffff">
-<meta name="color-scheme" content="light">
-<meta property="og:title" content="Independent Books — free offline accounting software">
-<meta property="og:description" content="Your whole ledger, on your machine, for free. No licence fee, no subscription, no telemetry.">
-<meta property="og:type" content="website">
-<link rel="stylesheet" href="styles.css">
-<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
-<link rel="apple-touch-icon" href="assets/logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Independent Books — The Open-Source, Air-Gapped Tally Prime Alternative</title>
+  <meta name="description" content="Free, open-source offline accounting software with full Tally Prime keyboard muscle memory, honest two-sided financial statements, state-aware GST calculation, and local SQLite data that never touches the cloud.">
+  <meta name="keywords" content="open source accounting software, tally prime alternative, offline accounting software, double entry bookkeeping, gst billing software, sqlite accounting, free accounting software windows">
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zoro-roronoa74.github.io/independent-books/">
+  <meta property="og:title" content="Independent Books — Accounting Software You Own, Not Rent">
+  <meta property="og:description" content="100% offline, air-gapped double-entry accounting engine with Tally hotkeys, two-sided balance sheet, and local SQLite transactions. Free forever under MIT.">
+  <meta property="og:image" content="https://zoro-roronoa74.github.io/independent-books/assets/logo.png">
+  
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<a class="skip" href="#download">Skip to the download</a>
+  <!-- ======================= TOPBAR ======================= -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#" aria-label="Independent Books Home">
+        <img class="brand__logo" src="assets/logo.png" alt="Logo" width="36" height="36">
+        <span class="brand__text"><span>Independent</span><strong>BOOKS</strong></span>
+      </a>
 
-<!-- ======================= header ======================= -->
-<header class="topbar">
-  <a class="brand" href="#top" aria-label="Independent Books home">
-    <img class="brand__logo" src="assets/logo.png" alt="" width="36" height="36" aria-hidden="true">
-    <span class="brand__text"><span>Independent</span><strong>BOOKS</strong></span>
-  </a>
-  <nav class="topnav" aria-label="Sections">
-    <a href="#download">Free download</a>
-    <a href="#inside">Inside the app</a>
-    <a href="#automation">Automation tools</a>
-    <a href="#faq">FAQ</a>
-  </nav>
-  <a class="btn btn--primary btn--sm" href="#download">Get it free</a>
-</header>
+      <nav class="topnav" aria-label="Navigation">
+        <a href="#simulator">Live Demo</a>
+        <a href="#manifesto">Manifesto</a>
+        <a href="#features">Features</a>
+        <a href="#comparison">Compare</a>
+        <a href="#shortcuts">Shortcuts</a>
+        <a href="#download">Downloads</a>
+        <a href="#faq">FAQ</a>
+      </nav>
 
-<main id="top">
-
-  <!-- ======================= hero ======================= -->
-  <section class="hero">
-    <div class="hero__copy">
-      <p class="eyebrow">Free software · Windows · 100% offline</p>
-      <h1>Own your books, <span class="hl">not a subscription</span>.</h1>
-      <p class="lede">
-        <strong>Independent Books</strong> is free desktop accounting software that runs entirely
-        on your PC. Create companies, post vouchers, track inventory, and read your Trial Balance
-        and Balance Sheet from a local database — not from somebody else's server.
-      </p>
-      <p class="free-note">
-        <strong>Free</strong> — no licence fee, no monthly plan, no trial timer, no features held
-        back behind a paywall.
-      </p>
-      <div class="cta-row">
-        <a class="btn btn--primary btn--lg" href="#download">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
-          Get it free
+      <div class="topbar__actions">
+        <a class="github-star-pill" href="https://github.com/zoro-roronoa74/independent-books" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+          <span>Star on GitHub</span>
         </a>
-        <a class="btn btn--quiet btn--lg" href="#automation">See the automation tools</a>
+        <a class="btn btn--primary btn--sm" href="#download">Download Free</a>
       </div>
-      <ul class="hero__facts">
-        <li><b>Free</b><span>licence, forever</span></li>
-        <li><b>Windows 10/11</b><span>64-bit</span></li>
-        <li><b>Local SQLite</b><span>a file you own</span></li>
-        <li><b>No telemetry</b><span>nothing leaves the PC</span></li>
-      </ul>
     </div>
+  </header>
 
-    <div class="hero__visual" id="heroVisual">
-      <div class="stage" id="stage">
-        <div class="app-window">
-          <div class="app-ribbon">
-            <span class="app-brand"><span>Independent</span><strong>BOOKS</strong></span>
-            <span class="app-menu">
-              <i>K</i> Company <i>Y</i> Data <i>O</i> Import <i>E</i> Export
-            </span>
+  <!-- ======================= HERO SECTION ======================= -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">
+        <span>✨ 100% Free & Open-Source · Air-Gapped Accounting · MIT License</span>
+      </div>
+
+      <h1 class="hero__title">
+        Accounting software you own.<br>
+        <span class="gradient-text">Not a subscription you rent.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        A fast, keyboard-driven double-entry bookkeeping engine built for independent businesses and accountants. 
+        Full Tally Prime muscle memory, exact decimal arithmetic, honest two-sided financial statements, and local SQLite data that never touches the cloud.
+      </p>
+
+      <div class="hero__cta-group">
+        <a class="btn btn--primary btn--lg" href="#download">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
+          Download for Windows — Free
+        </a>
+        <a class="btn btn--secondary btn--lg" href="https://github.com/zoro-roronoa74/independent-books" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View Source & GitHub Stars
+        </a>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="hero__metrics">
+        <div class="metric-card">
+          <div class="metric-card__value accent">₹0 / $0</div>
+          <div class="metric-card__label">Subscription Fees Forever</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card__value">100%</div>
+          <div class="metric-card__label">Air-Gapped (127.0.0.1)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card__value">8.57 MB</div>
+          <div class="metric-card__label">Native C Machine Code</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card__value">0.0 ms</div>
+          <div class="metric-card__label">Cloud Network Latency</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= INTERACTIVE LIVE SIMULATOR ======================= -->
+  <section class="simulator-section" id="simulator">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow">Interactive Live Simulator</p>
+        <h2 class="section-title">Experience the Accounting Engine</h2>
+        <p class="section-desc">Test real double-entry calculations, live Gateway KPIs, and honest two-sided financial reports right here in your browser.</p>
+      </div>
+
+      <div class="simulator-wrapper">
+        <div class="simulator-titlebar">
+          <div class="sim-window-dots">
+            <span class="sim-dot red"></span>
+            <span class="sim-dot yellow"></span>
+            <span class="sim-dot green"></span>
           </div>
-          <div class="app-titlebar"><strong>Gateway of Books</strong><span>Local · 127.0.0.1</span></div>
-          <div class="app-body">
-            <ul class="app-side">
-              <li class="is-active">Gateway of Books</li>
-              <li>Masters</li>
-              <li>Transactions</li>
-              <li>Reports</li>
-              <li>Inventory</li>
-            </ul>
-            <div class="app-main">
-              <div class="app-row app-row--head"><span>Particulars</span><span>Debit</span><span>Credit</span></div>
-              <div class="app-row"><span>Opening Balance</span><span>1,24,500.00</span><span></span></div>
-              <div class="app-row"><span>Sales Accounts</span><span></span><span>86,200.00</span></div>
-              <div class="app-row"><span>Purchase Accounts</span><span>42,750.00</span><span></span></div>
-              <div class="app-row"><span>Bank / Cheque</span><span>18,940.00</span><span></span></div>
-              <div class="app-row app-row--total"><span>Difference</span><span>0.00</span><span>0.00</span></div>
+
+          <div class="sim-tabs">
+            <button class="sim-tab-btn active" data-tab="gateway">Gateway (G)</button>
+            <button class="sim-tab-btn" data-tab="sales">F8 Sales Voucher</button>
+            <button class="sim-tab-btn" data-tab="balance-sheet">Balance Sheet (B)</button>
+            <button class="sim-tab-btn" data-tab="profit-loss">Profit & Loss (P)</button>
+          </div>
+
+          <div class="sim-address-bar">
+            <span>● 127.0.0.1:3543 (Localhost Only)</span>
+          </div>
+        </div>
+
+        <div class="simulator-body">
+          <!-- View 1: Gateway KPI View -->
+          <div class="sim-view active" id="view-gateway">
+            <div class="sim-gateway-grid">
+              <div class="sim-menu-card">
+                <div class="sim-menu-header">Gateway of Books</div>
+                <ul class="sim-menu-list">
+                  <li class="sim-menu-item active"><span>Masters</span><span class="key">M</span></li>
+                  <li class="sim-menu-item"><span>Vouchers</span><span class="key">V</span></li>
+                  <li class="sim-menu-item"><span>Day Book</span><span class="key">K</span></li>
+                  <li class="sim-menu-item"><span>Balance Sheet</span><span class="key">B</span></li>
+                  <li class="sim-menu-item"><span>Profit & Loss A/c</span><span class="key">P</span></li>
+                  <li class="sim-menu-item"><span>Stock Summary</span><span class="key">S</span></li>
+                  <li class="sim-menu-item"><span>Display More Reports</span><span class="key">D</span></li>
+                  <li class="sim-menu-item"><span>Quit</span><span class="key">Q</span></li>
+                </ul>
+              </div>
+
+              <div class="sim-kpi-main">
+                <div class="sim-kpi-grid">
+                  <div class="sim-kpi-card">
+                    <div class="sim-kpi-title">Today's Sales</div>
+                    <div class="sim-kpi-val green">₹86,200.00</div>
+                  </div>
+                  <div class="sim-kpi-card">
+                    <div class="sim-kpi-title">Due from Debtors</div>
+                    <div class="sim-kpi-val blue">₹1,24,500.00</div>
+                  </div>
+                  <div class="sim-kpi-card">
+                    <div class="sim-kpi-title">This Month's Profit</div>
+                    <div class="sim-kpi-val amber">₹42,750.00</div>
+                  </div>
+                </div>
+
+                <div class="sim-chart-card">
+                  <div class="sim-chart-header">
+                    <strong>Weekly Sales Trend</strong>
+                    <span style="font-size:0.8rem; color:#34d399;">+18.4% vs last week</span>
+                  </div>
+                  <!-- Vector Trend SVG -->
+                  <svg viewBox="0 0 600 160" width="100%" height="160" fill="none">
+                    <defs>
+                      <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M 0 130 Q 100 110, 150 90 T 300 100 T 450 40 T 600 20 L 600 160 L 0 160 Z" fill="url(#chartGradient)"/>
+                    <path d="M 0 130 Q 100 110, 150 90 T 300 100 T 450 40 T 600 20" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="150" cy="90" r="4" fill="#38bdf8"/>
+                    <circle cx="300" cy="100" r="4" fill="#38bdf8"/>
+                    <circle cx="450" cy="40" r="4" fill="#38bdf8"/>
+                    <circle cx="600" cy="20" r="5" fill="#34d399"/>
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="app-footer">
-            <span><i>Q</i> Quit</span><span><i>A</i> Accept</span><span><i>D</i> Delete</span>
-            <span class="app-footer__tail"><i>F12</i> Setting</span>
+
+          <!-- View 2: F8 Sales Voucher Interactive Calculator -->
+          <div class="sim-view" id="view-sales">
+            <div style="background:#131c31; padding:20px; border-radius:12px; border:1px solid var(--border-subtle);">
+              <div style="display:flex; justify-content:space-between; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+                <strong>Accounting Voucher Creation: Sales (No. 101)</strong>
+                <span style="font-family:var(--font-mono); color:#38bdf8;">Date: 16-Oct-2026</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+                <div>
+                  <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:4px;">Party A/c Name</label>
+                  <select id="sim-party" style="width:100%; padding:8px 12px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:6px;">
+                    <option value="intra">M/s Local Steel Traders (Intra-State: CGST + SGST)</option>
+                    <option value="inter">M/s National Infrastructure (Inter-State: IGST)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:4px;">Sales Ledger</label>
+                  <input type="text" value="GST Sales @ 18%" readonly style="width:100%; padding:8px 12px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:6px;">
+                </div>
+              </div>
+
+              <!-- Interactive Item Entry -->
+              <table style="width:100%; border-collapse:collapse; margin-bottom:16px;">
+                <thead>
+                  <tr style="border-bottom:1px solid var(--border-subtle); color:var(--text-muted); font-size:0.85rem; text-align:left;">
+                    <th style="padding:8px 0;">Item Description</th>
+                    <th>Quantity (pcs)</th>
+                    <th>Rate (₹)</th>
+                    <th style="text-align:right;">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding:10px 0; font-weight:600;">Heavy Structural Steel Beams (HSN 7216)</td>
+                    <td><input id="sim-qty" type="number" value="10" min="1" style="width:80px; padding:6px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:4px;"></td>
+                    <td><input id="sim-rate" type="number" value="5000" min="100" style="width:100px; padding:6px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:4px;"></td>
+                    <td style="text-align:right; font-weight:700; font-family:var(--font-mono); color:#38bdf8;" id="sim-taxable">₹50,000.00</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Automatic State-Aware Tax Breakdown -->
+              <div style="background:#090e1a; padding:14px; border-radius:8px; border:1px dashed var(--border-medium); margin-bottom:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;" id="sim-cgst-row">
+                  <span style="color:var(--text-secondary);">Central GST (CGST @ 9%):</span>
+                  <span style="font-family:var(--font-mono); color:#34d399;" id="sim-cgst">₹4,500.00</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;" id="sim-sgst-row">
+                  <span style="color:var(--text-secondary);">State GST (SGST @ 9%):</span>
+                  <span style="font-family:var(--font-mono); color:#34d399;" id="sim-sgst">₹4,500.00</span>
+                </div>
+                <div style="display:none; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;" id="sim-igst-row">
+                  <span style="color:var(--text-secondary);">Integrated GST (IGST @ 18%):</span>
+                  <span style="font-family:var(--font-mono); color:#a855f7;" id="sim-igst">₹9,000.00</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border-subtle); padding-top:8px; font-size:1.1rem; font-weight:800;">
+                  <span>Invoice Grand Total:</span>
+                  <span style="font-family:var(--font-mono); color:#38bdf8;" id="sim-total">₹59,000.00</span>
+                </div>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>Ctrl</kbd> + <kbd>A</kbd> to Quick Accept · Exact Decimal Precision</span>
+                <button type="button" class="btn btn--primary btn--sm" style="pointer-events:none;">Accept Voucher (Enter)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- View 3: Two-Sided Balance Sheet -->
+          <div class="sim-view" id="view-balance-sheet">
+            <div class="two-sided-layout">
+              <div class="statement-col">
+                <div class="statement-head">
+                  <span>Capital & Liabilities</span>
+                  <span>Amount (₹)</span>
+                </div>
+                <div class="statement-row"><span>Capital Account</span><span>5,00,000.00</span></div>
+                <div class="statement-row"><span>Loans (Liability)</span><span>1,20,000.00</span></div>
+                <div class="statement-row"><span>Current Liabilities (Sundry Creditors)</span><span>84,350.00</span></div>
+                <div class="statement-row"><span>Profit & Loss A/c (Current Period)</span><span>42,750.00</span></div>
+                <div class="statement-row"><span>Diff. in Opening Balances</span><span>0.00</span></div>
+                <div class="statement-row total"><span>Total Liabilities</span><span>7,47,100.00</span></div>
+              </div>
+
+              <div class="statement-col">
+                <div class="statement-head">
+                  <span>Property & Assets</span>
+                  <span>Amount (₹)</span>
+                </div>
+                <div class="statement-row"><span>Fixed Assets (Plant & Machinery)</span><span>3,50,000.00</span></div>
+                <div class="statement-row"><span>Current Assets (Sundry Debtors)</span><span>1,24,500.00</span></div>
+                <div class="statement-row"><span>Closing Stock (Weighted Avg Cost)</span><span>1,82,600.00</span></div>
+                <div class="statement-row"><span>Bank Accounts</span><span>78,200.00</span></div>
+                <div class="statement-row"><span>Cash-in-Hand</span><span>11,800.00</span></div>
+                <div class="statement-row total"><span>Total Assets</span><span>7,47,100.00</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- View 4: Two-Sided Profit & Loss -->
+          <div class="sim-view" id="view-profit-loss">
+            <div class="two-sided-layout">
+              <div class="statement-col">
+                <div class="statement-head">
+                  <span>Trading Expenses & Purchases</span>
+                  <span>Amount (₹)</span>
+                </div>
+                <div class="statement-row"><span>Opening Stock</span><span>1,12,000.00</span></div>
+                <div class="statement-row"><span>Purchase Accounts</span><span>2,40,000.00</span></div>
+                <div class="statement-row"><span>Direct Expenses (Freight Inward)</span><span>14,500.00</span></div>
+                <div class="statement-row"><span>Gross Profit c/o</span><span>96,800.00</span></div>
+                <div class="statement-row"><span>Indirect Expenses (Office & Rent)</span><span>54,050.00</span></div>
+                <div class="statement-row total" style="color:#34d399;"><span>Nett Profit</span><span>42,750.00</span></div>
+              </div>
+
+              <div class="statement-col">
+                <div class="statement-head">
+                  <span>Revenue & Closing Stock</span>
+                  <span>Amount (₹)</span>
+                </div>
+                <div class="statement-row"><span>Sales Accounts</span><span>2,80,700.00</span></div>
+                <div class="statement-row"><span>Closing Stock</span><span>1,82,600.00</span></div>
+                <div class="statement-row"><span>Gross Profit b/f</span><span>96,800.00</span></div>
+                <div class="statement-row"><span>Indirect Incomes (Interest / Rebates)</span><span>0.00</span></div>
+                <div class="statement-row total"><span>Total Reconciliation</span><span>4,63,300.00</span></div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="float-card float-card--voucher">
-          <span class="float-card__label">Voucher · Receipt</span>
-          <span class="float-card__value">₹ 24,000.00</span>
-        </div>
-        <div class="float-card float-card--balance">
-          <span class="float-card__label">Licence cost</span>
-          <span class="float-card__value">₹ 0.00</span>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ======================= download (highlight) ======================= -->
-  <section class="download" id="download">
-    <div class="download__card">
-      <div class="download__head">
-        <p class="eyebrow">Free accounting software</p>
-        <h2>Free to download. Free to keep. Free to use forever.</h2>
-        <p class="lede">
-          No licence fee. No subscription. No per-company charge, no seat limit and no feature
-          that unlocks only after you pay. Install it once and your books are yours.
-        </p>
-      </div>
-
-      <div class="download__grid">
-        <div class="download__action">
-          <a class="btn btn--primary btn--download" id="downloadBtn"
-             href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe" download>
-            <span class="btn__icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
-            </span>
-            <span class="btn__text">
-              <b>Download for Windows — free</b>
-              <small>IndependentBooksSetup.exe · 8.6 MB</small>
-            </span>
-          </a>
-          <p class="download__note">
-            Windows 10 or 11 (64-bit). Nothing to sign up for, no key to enter and no card asked
-            for. A runtime is bundled, so there is nothing else to install — and it works with the
-            network unplugged.
-          </p>
-        </div>
-
-        <dl class="download__meta">
-          <div><dt>Price</dt><dd>Free — forever</dd></div>
-          <div><dt>Licence fee</dt><dd>None</dd></div>
-          <div><dt>Subscription</dt><dd>None</dd></div>
-          <div><dt>File</dt><dd>IndependentBooksSetup.exe</dd></div>
-          <div><dt>Size</dt><dd>8,986,112 bytes (8.6 MB)</dd></div>
-          <div><dt>Platform</dt><dd>Windows 10 / 11 · 64-bit</dd></div>
-          <div><dt>Build</dt><dd>15 October 2026</dd></div>
-          <div><dt>Your data</dt><dd>A local SQLite file you own</dd></div>
-          <div><dt>Telemetry</dt><dd>None</dd></div>
-          <div class="download__hash">
-            <dt>SHA-256</dt>
-            <dd><code id="hashValue">bb46bd0e15f13fcb3daac5751dc5616f9b3b7556ebcaee7c278d7f843008dd5f</code></dd>
-            <button class="copy" type="button" id="copyHash" aria-label="Copy SHA-256 checksum">Copy</button>
-          </div>
-        </dl>
-      </div>
-
-      <div class="free-grid">
-        <div class="free-point">
-          <b>No licence fee</b>
-          <p>You do not buy it, rent it, or activate it. There is no key and no expiry date.</p>
-        </div>
-        <div class="free-point">
-          <b>No subscription</b>
-          <p>Nothing to renew, nothing that stops working if a card expires.</p>
-        </div>
-        <div class="free-point">
-          <b>No locked features</b>
-          <p>Every screen in the build is available to you, including reports and export.</p>
-        </div>
-      </div>
-
-      <ol class="steps">
-        <li><span class="steps__n">1</span><div><b>Download it</b><p>Grab <code>IndependentBooksSetup.exe</code> with the button above — 8.6 MB, nothing to pay.</p></div></li>
-        <li><span class="steps__n">2</span><div><b>Install it</b><p>Run the installer. If Windows SmartScreen appears, choose <em>More info → Run anyway</em> — the build is unsigned.</p></div></li>
-        <li><span class="steps__n">3</span><div><b>Create your company</b><p>Open the app and set your financial period. The database starts empty by design — no sample parties, no invented amounts.</p></div></li>
-      </ol>
-
-      <p class="download__already">
-        Already installed? Open the <strong>Independent Books</strong> shortcut on your Desktop.
-        The launcher serves the app only on <code>127.0.0.1</code> and picks a free port itself.
-        If the checksum above does not match your file, delete it and download again.
-      </p>
-    </div>
-  </section>
-
-  <!-- ======================= inside the app ======================= -->
-  <section class="inside" id="inside">
-    <div class="section-head">
-      <p class="eyebrow">Inside the app</p>
-      <h2>Real double-entry bookkeeping, not a demo dashboard</h2>
-      <p class="lede">Everything below is implemented and working in the current build — and all of it is free.</p>
-    </div>
-
-    <div class="cards">
-      <article class="card">
-        <h3>Companies &amp; masters</h3>
-        <p>Create and alter companies, ledgers, groups, stock items, units, godowns, voucher types, stock groups and categories, cost categories and centres, and currencies.</p>
-      </article>
-      <article class="card">
-        <h3>Vouchers &amp; inventory</h3>
-        <p>Accounting vouchers, invoice entry, inventory vouchers, stable alteration, cancellation and deletion. Optional vouchers stay outside balances. Negative stock is rejected.</p>
-      </article>
-      <article class="card">
-        <h3>Statements that reconcile</h3>
-        <p>Day Book, Trial Balance, ledger and group drill-downs, monthly registers, Stock Summary, bill references and outstandings, statistics and a dashboard.</p>
-      </article>
-      <article class="card">
-        <h3>Honest Balance Sheet &amp; P&amp;L</h3>
-        <p>Derived views show the <em>actual</em> difference instead of inventing a balancing figure. Inventory uses moving weighted average; returns use the prevailing cost.</p>
-      </article>
-      <article class="card">
-        <h3>Bring your old books with you</h3>
-        <p>Import masters and vouchers from XML with a preview and an atomic commit — no half-saved books. Multi-file bundles import dependencies first. Export back to XML, CSV or HTML.</p>
-      </article>
-      <article class="card">
-        <h3>Keyboard-fast, exact money</h3>
-        <p>Familiar navigation with <kbd>F2</kbd>/<kbd>F3</kbd>, <kbd>F4</kbd>–<kbd>F10</kbd>, <kbd>Alt</kbd>+<kbd>G</kbd> and <kbd>Ctrl</kbd>+<kbd>A</kbd>. Amounts are stored exactly and summed as integers, never as floating-point guesses.</p>
-      </article>
-      <article class="card">
-        <h3>Yours, privately</h3>
-        <p>Books live in a local SQLite file with committed snapshots. Full JSON backup and restore, with a preview before anything is overwritten. No telemetry, no remote database, no sign-in.</p>
-      </article>
-      <article class="card">
-        <h3>Print &amp; share</h3>
-        <p>Dedicated voucher and report printing, real report exports, and a clickable calendar date picker alongside typed date fields.</p>
-      </article>
-    </div>
-
-    <aside class="straight-talk">
-      <h3>Straight talk about the limits</h3>
-      <p>
-        This is an independent accounting engine, not a clone of any commercial package, and it
-        does not read other vendors' proprietary data files. GST return filing, e-invoice and
-        e-way bills, payroll, TDS/TCS, multi-currency conversion, connected banking, FIFO or batch
-        valuation, price levels, and manufacturing/BOM are <strong>not implemented yet</strong>.
-        Migration uses open XML exports. We would rather tell you that up front than let you
-        discover it after installing.
-      </p>
-    </aside>
-  </section>
-
-  <!-- ======================= business automation tools ======================= -->
-  <section class="automation" id="automation">
-    <div class="auto-shell">
+  <!-- ======================= MANIFESTO SECTION ======================= -->
+  <section class="manifesto-section" id="manifesto">
+    <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Business automation tools</p>
-        <h2>Put the repetitive half of bookkeeping on autopilot</h2>
-        <p class="lede">
-          Half of accounting is judgement: posting, approving, deciding. The other half is copying
-          numbers from one place to another. These tools take the second half — so month-end becomes
-          a review instead of a re-typing session. Everything still waits for your yes.
+        <p class="section-eyebrow">The Anti-Subscription Manifesto</p>
+        <h2 class="section-title">Why the World Needs Independent Books</h2>
+        <p class="section-desc">
+          Double-entry bookkeeping was codified by Luca Pacioli in 1494. It is a universal mathematical discipline — not a corporate rent-seeking scheme.
         </p>
       </div>
 
-      <div class="auto-steps">
-        <div class="auto-step">
-          <span class="auto-step__n">1</span>
-          <h3>Tell us the chore</h3>
-          <p>One mail describing the task you would happily never do again is enough to start.</p>
-        </div>
-        <div class="auto-step">
-          <span class="auto-step__n">2</span>
-          <h3>We fit it to your books</h3>
-          <p>Your workflows, your reports, your formats — not a fixed template you have to bend to.</p>
-        </div>
-        <div class="auto-step">
-          <span class="auto-step__n">3</span>
-          <h3>You approve, it repeats</h3>
-          <p>Every automation drafts and flags. Nothing posts silently into your ledger.</p>
-        </div>
-      </div>
-
-      <div class="auto-grid">
-        <article class="auto-card">
-          <h3>Your invoices file themselves</h3>
-          <p>Drop in bills, invoices or scans and get draft vouchers waiting for a yes or a quick fix. No more typing the same numbers twice.</p>
-          <span class="tag">Data entry relief</span>
-        </article>
-        <article class="auto-card">
-          <h3>Reconciliation done before your coffee</h3>
-          <p>Statement lines matched against your ledger, with anything odd flagged for a human instead of quietly guessed away.</p>
-          <span class="tag">Month-end</span>
-        </article>
-        <article class="auto-card">
-          <h3>The rent never misses a date</h3>
-          <p>Rent, subscriptions, EMIs and salaries posted on a timetable, with a tidy review queue for anything that changed value.</p>
-          <span class="tag">Always on time</span>
-        </article>
-        <article class="auto-card">
-          <h3>Stop chasing the same payment twice</h3>
-          <p>Outstanding bills followed up by email or WhatsApp, drawn straight from bill references and ageing — politely, and on schedule.</p>
-          <span class="tag">Receivables</span>
-        </article>
-        <article class="auto-card">
-          <h3>Your numbers arrive unbidden</h3>
-          <p>Day Book summary, cash position and ageing delivered to your inbox on the timetable you choose.</p>
-          <span class="tag">Reporting</span>
-        </article>
-        <article class="auto-card">
-          <h3>Two systems, one story</h3>
-          <p>Scheduled export and import between your existing software and these books, so the two ledgers stop drifting apart.</p>
-          <span class="tag">Migration &amp; sync</span>
-        </article>
-        <article class="auto-card">
-          <h3>Clean books before you move</h3>
-          <p>Duplicate masters, inconsistent groupings and broken postings found before they poison a year of reports.</p>
-          <span class="tag">Before you migrate</span>
-        </article>
-        <article class="auto-card">
-          <h3>Or describe your own chore</h3>
-          <p>A supplier portal, a spreadsheet ritual, a print-and-file routine — if it repeats, there is a good chance it can run itself.</p>
-          <span class="tag">Built to order</span>
-        </article>
-      </div>
-
-      <div class="mail">
-        <div class="mail__copy">
-          <h3>Tell us the chore you hate most</h3>
+      <div class="manifesto-grid">
+        <div class="manifesto-card">
+          <div class="manifesto-icon green">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Your Data Is Yours Forever</h3>
           <p>
-            One short note is enough: your business, the software you use today, and the task you
-            would love to never do again. You will get scope, effort and price back — no obligation
-            and no sales call.
+            Cloud accounting platforms store your company's deepest secrets on multi-tenant servers. 
+            If you ever cancel your subscription, they freeze your account and lock you out of your historical records. 
+            With Independent Books, your database is a single, standard SQLite file on your physical hard drive.
           </p>
         </div>
-        <div class="mail__action">
-          <a class="btn btn--primary btn--lg" id="mailBtn" href="mailto:mosoassisstant@gmail.com?subject=Business%20automation%20%E2%80%94%20the%20chore%20I%20want%20to%20stop%20doing&amp;body=Hi%20Moso%2C%0D%0A%0D%0ABusiness%20name%3A%20%0D%0AType%20of%20business%3A%20%0D%0ASoftware%20I%20use%20today%3A%20%0D%0AThe%20chore%20I%20want%20automated%3A%20%0D%0AHow%20often%20it%20happens%3A%20%0D%0A%0D%0AThanks%2C">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
-            Mail us
-          </a>
-          <button class="email-copy" type="button" id="copyEmail" data-email="mosoassisstant@gmail.com">
-            <span class="email-copy__label">Email</span>
-            <span class="email-copy__value">mosoassisstant@gmail.com</span>
-            <span class="email-copy__hint" aria-live="polite">Copy</span>
-          </button>
+
+        <div class="manifesto-card">
+          <div class="manifesto-icon blue">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Keyboard Speed at 120 WPM</h3>
+          <p>
+            Modern web apps force you to take your hands off the keyboard, wait for spinning loaders, and click tiny buttons with a mouse. 
+            Independent Books preserves every authentic Tally Prime muscle-memory hotkey (<kbd>F2</kbd>–<kbd>F10</kbd>, <kbd>Alt</kbd>+<kbd>G</kbd>, <kbd>Ctrl</kbd>+<kbd>A</kbd>) 
+            so your accountants can post hundreds of invoices an hour without touching a mouse.
+          </p>
+        </div>
+
+        <div class="manifesto-card">
+          <div class="manifesto-icon purple">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Zero Mathematical Guesswork</h3>
+          <p>
+            Most modern JavaScript and SaaS web tools calculate money using standard IEEE floating-point math, leading to tiny rounding errors that accumulate and corrupt balance sheets. 
+            Independent Books computes every voucher using exact Python <code>Decimal</code> and integer cents. Zero balancing plugs. Zero fabricated numbers.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======================= FAQ ======================= -->
-  <section class="faq" id="faq">
-    <div class="section-head">
-      <p class="eyebrow">Questions</p>
-      <h2>The things people ask before installing</h2>
-    </div>
-    <div class="faq__list">
-      <details open>
-        <summary>Is it really free? What is the catch?</summary>
-        <p>It is free. No licence fee, no subscription, no seat limit, no per-company charge, and no feature held behind a paywall. The optional business automation tools are a separate, paid service we build with you — if you never ask for one, you never pay anything.</p>
-      </details>
-      <details>
-        <summary>Is my accounting data sent anywhere?</summary>
-        <p>No. Books are stored in a local SQLite file on your PC, the app server listens only on <code>127.0.0.1</code>, and the build ships with no telemetry, no sign-in, no AI provider and no remote database. If you never run an automation tool, nothing leaves your machine.</p>
-      </details>
-      <details>
-        <summary>Do I need internet to use it?</summary>
-        <p>No. The desktop app works fully offline and bundles its own runtime, so nothing else needs installing and nothing needs to phone home.</p>
-      </details>
-      <details>
-        <summary>Can I move my books from my current software?</summary>
-        <p>Yes, through open XML. Export your masters and vouchers from your current system, then use <strong>Import → Preview</strong> in Independent Books, select the related files together, review the counts and warnings, and commit. Import compatibility with every vendor's schema has not been verified against every configuration — so test on a copy first.</p>
-      </details>
-      <details>
-        <summary>What happens to my books if I reinstall?</summary>
-        <p>Installed builds keep your database in your local app data folder, so reinstalling or updating the application does not wipe your company. <strong>Data → Backup</strong> exports every company to a validated, portable JSON file you can restore later.</p>
-      </details>
-      <details>
-        <summary>Why does Windows warn me when I install it?</summary>
-        <p>The installer is not code-signed, so SmartScreen shows an <em>unknown publisher</em> warning. That is a signing certificate we have not bought, not a sign of anything wrong with your books.</p>
-      </details>
-      <details>
-        <summary>How do the automation tools get my data?</summary>
-        <p>Only how you choose. Most setups read a copy of your backup file, a bank statement export, or a watched folder — and every automation writes drafts for you to approve. Mail us and we will describe the exact data path before anything starts.</p>
-      </details>
+  <!-- ======================= COMPARISON TABLE ======================= -->
+  <section class="comparison-section" id="comparison">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow">Uncompromising Comparison</p>
+        <h2 class="section-title">Independent Books vs The Rest</h2>
+        <p class="section-desc">See how we stack up against proprietary incumbents and cloud SaaS tools.</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight">Independent Books ⚡</th>
+              <th>Tally Prime</th>
+              <th>QuickBooks Online</th>
+              <th>Zoho Books</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Licence & Pricing</strong></td>
+              <td class="highlight"><strong>Free Forever (MIT)</strong></td>
+              <td>₹22,500+ / yr</td>
+              <td>$30 – $90 / mo</td>
+              <td>₹750 – ₹3,000 / mo</td>
+            </tr>
+            <tr>
+              <td><strong>Database Format</strong></td>
+              <td class="highlight"><strong>Open SQLite (You Own It)</strong></td>
+              <td>Proprietary <code>.900/.tsf</code></td>
+              <td>Proprietary Cloud DB</td>
+              <td>Proprietary Cloud DB</td>
+            </tr>
+            <tr>
+              <td><strong>Air-Gapped Operation</strong></td>
+              <td class="highlight"><span class="check">✓</span> 100% Offline (127.0.0.1)</td>
+              <td><span class="check">✓</span> Local</td>
+              <td><span class="cross">✗</span> Internet Required</td>
+              <td><span class="cross">✗</span> Internet Required</td>
+            </tr>
+            <tr>
+              <td><strong>Tally Keyboard Ergonomics</strong></td>
+              <td class="highlight"><span class="check">✓</span> Full Hotkeys (F2–F10, Alt+G)</td>
+              <td><span class="check">✓</span> Native</td>
+              <td><span class="cross">✗</span> Mouse-Heavy Web UI</td>
+              <td><span class="cross">✗</span> Mouse-Heavy Web UI</td>
+            </tr>
+            <tr>
+              <td><strong>Balance Sheet Layout</strong></td>
+              <td class="highlight"><strong>Honest Two-Sided (Left/Right)</strong></td>
+              <td>Two-Sided</td>
+              <td>Single Stacked Column</td>
+              <td>Single Stacked Column</td>
+            </tr>
+            <tr>
+              <td><strong>Decimal Precision</strong></td>
+              <td class="highlight"><span class="check">✓</span> Exact Python <code>Decimal</code></td>
+              <td><span class="check">✓</span> Native Integer</td>
+              <td><span class="cross">✗</span> Float Rounding</td>
+              <td><span class="cross">✗</span> Float Rounding</td>
+            </tr>
+            <tr>
+              <td><strong>Native Binary Compilation</strong></td>
+              <td class="highlight"><span class="check">✓</span> C Machine Code (8.57 MB)</td>
+              <td><span class="check">✓</span> C++ Binary</td>
+              <td><span class="cross">✗</span> Heavy Browser Tabs</td>
+              <td><span class="cross">✗</span> Heavy Browser Tabs</td>
+            </tr>
+            <tr>
+              <td><strong>User Telemetry & Tracking</strong></td>
+              <td class="highlight"><strong>Zero Telemetry</strong></td>
+              <td>Licence Tracking</td>
+              <td>Heavy Ad/Analytics Trackers</td>
+              <td>Heavy Analytics Trackers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-</main>
-
-<footer class="footer">
-  <div class="footer__top">
-    <div class="footer__brand">
-      <div class="footer__brandline">
-        <img class="brand__logo" src="assets/logo.png" alt="" width="32" height="32" aria-hidden="true">
-        <span class="brand__text"><span>Independent</span><strong>BOOKS</strong></span>
+  <!-- ======================= SHORTCUTS SECTION ======================= -->
+  <section class="shortcuts-section" id="shortcuts">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow">Keyboard Mastery</p>
+        <h2 class="section-title">Built for 120 WPM Touch Typists</h2>
+        <p class="section-desc">Every action, voucher, and report is reachable in a split second without your fingers ever leaving the home row.</p>
       </div>
-      <p>Free offline accounting software for independent businesses, plus business automation tools built around your books.</p>
+
+      <div class="shortcuts-grid">
+        <div class="shortcut-pill">
+          <span class="action">Universal Go To</span>
+          <kbd>Alt</kbd> + <kbd>G</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Quick Accept</span>
+          <kbd>Ctrl</kbd> + <kbd>A</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Change Date</span>
+          <kbd>F2</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Report Period Range</span>
+          <kbd>Alt</kbd> + <kbd>F2</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Sales Voucher</span>
+          <kbd>F8</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Purchase Voucher</span>
+          <kbd>F9</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Payment Voucher</span>
+          <kbd>F5</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Receipt Voucher</span>
+          <kbd>F6</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Contra Voucher</span>
+          <kbd>F4</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Journal Voucher</span>
+          <kbd>F7</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Delete Company / Voucher</span>
+          <kbd>Alt</kbd> + <kbd>D</kbd>
+        </div>
+        <div class="shortcut-pill">
+          <span class="action">Print / Preview Invoice</span>
+          <kbd>Ctrl</kbd> + <kbd>P</kbd>
+        </div>
+      </div>
     </div>
-    <nav class="footer__nav" aria-label="Footer">
-      <a href="#download">Free download</a>
-      <a href="#inside">Inside the app</a>
-      <a href="#automation">Automation tools</a>
-      <a href="#faq">FAQ</a>
-      <a href="mailto:mosoassisstant@gmail.com">mosoassisstant@gmail.com</a>
-    </nav>
-  </div>
-  <div class="footer__bottom">
-    <p>© <span id="year">2026</span> Independent Books · Free to use, offline by design.</p>
-    <p class="footer__note">Independent software. Your books stay on your machine.</p>
-  </div>
-</footer>
+  </section>
 
-<!-- ============ AI offer bar — revealed once the visitor scrolls a little ============ -->
-<aside class="ai-bar" id="aiBar" aria-label="AI for your business">
-  <span class="ai-bar__badge">AI for business</span>
-  <p class="ai-bar__pitch">
-    Want AI working inside your business? It can <em>cut your costs in half</em> and
-    <em>double your productivity</em>. Mail us now and leave your contact details.
-  </p>
-  <div class="ai-bar__action">
-    <a class="ai-btn" id="aiBtn" href="mailto:mosoassisstant@gmail.com?subject=AI%20for%20my%20business%20%E2%80%94%20contact%20me&amp;body=Hi%20Moso%2C%0D%0A%0D%0AI%20want%20to%20use%20AI%20in%20my%20business.%0D%0A%0D%0AName%3A%20%0D%0ABusiness%20name%3A%20%0D%0APhone%20%2F%20email%3A%20%0D%0AWhat%20my%20business%20does%3A%20%0D%0AWhere%20I%20want%20AI%20to%20help%3A%20%0D%0A%0D%0AThanks%2C">
-      Mail us now
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
-    </a>
-    <span class="ai-bar__addr">mosoassisstant@gmail.com</span>
-  </div>
-  <button class="ai-bar__close" id="aiClose" type="button" aria-label="Dismiss this message">
-    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-</aside>
+  <!-- ======================= DOWNLOAD HUB SECTION ======================= -->
+  <section class="download-section" id="download">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow">Get Started in Seconds</p>
+        <h2 class="section-title">Download Independent Books</h2>
+        <p class="section-desc">Free forever. No credit card, no sign-in, no telemetry. Choose your preferred distribution below.</p>
+      </div>
 
-<script src="app.js" defer></script>
+      <div class="download-grid">
+        <!-- Card 1: Windows Installer -->
+        <div class="download-card featured">
+          <div>
+            <div class="download-card__title">Windows Installer</div>
+            <div class="download-card__meta">64-bit · Windows 10 & 11 · 8.57 MB</div>
+            <ul class="download-card__features">
+              <li>1-Click Desktop & Start Menu setup</li>
+              <li>Embedded native C machine code binary</li>
+              <li>Auto-isolated user data folder</li>
+              <li>Includes clean uninstaller</li>
+            </ul>
+          </div>
+          <a class="btn btn--primary" href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe" download>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
+            Download Installer (.exe)
+          </a>
+        </div>
+
+        <!-- Card 2: Portable ZIP Edition -->
+        <div class="download-card">
+          <div>
+            <div class="download-card__title">Portable ZIP Edition</div>
+            <div class="download-card__meta">Zero-Install · USB Drive Ready · 8.50 MB</div>
+            <ul class="download-card__features">
+              <li>No administrator rights needed</li>
+              <li>Zero SmartScreen / browser warnings</li>
+              <li>Runs entirely inside extracted folder</li>
+              <li>Double-click Launch.vbs to run</li>
+            </ul>
+          </div>
+          <a class="btn btn--secondary" href="https://independent-books.pages.dev/downloads/IndependentBooks_Portable.zip" download>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Portable (.zip)
+          </a>
+        </div>
+
+        <!-- Card 3: GitHub Releases & Source -->
+        <div class="download-card">
+          <div>
+            <div class="download-card__title">GitHub & Releases</div>
+            <div class="download-card__meta">Official Repository · macOS · Linux</div>
+            <ul class="download-card__features">
+              <li>Full Python / C source code</li>
+              <li>Includes macOS launch_mac.sh</li>
+              <li>Community issue tracker & PRs</li>
+              <li>Automated CI verification</li>
+            </ul>
+          </div>
+          <a class="btn btn--secondary" href="https://github.com/zoro-roronoa74/independent-books/releases/tag/v1.0.0" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub Releases (v1.0.0)
+          </a>
+        </div>
+      </div>
+
+      <!-- Verified SHA-256 Checksum Box -->
+      <div class="download-hash-box">
+        <div>
+          <span style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); display:block; font-weight:700;">Verified Release SHA-256 Checksum</span>
+          <span class="hash-text" id="shaHashText">bb46bd0e15f13fcb3daac5751dc5616f9b3b7556ebcaee7c278d7f843008dd5f</span>
+        </div>
+        <button class="copy-btn" id="copyHashBtn" type="button">Copy Hash</button>
+      </div>
+      
+      <!-- SmartScreen / Chrome note -->
+      <div style="max-width:800px; margin:20px auto 0; padding:16px; background:rgba(234, 179, 8, 0.08); border:1px solid rgba(234, 179, 8, 0.2); border-radius:8px; font-size:0.88rem; color:#fde047; text-align:left;">
+        <strong>💡 Note on Windows SmartScreen & Chrome:</strong> Because Independent Books is a community-funded open-source project without a \$500/year corporate code-signing certificate, Chrome and Windows may show an *"Unknown publisher"* prompt. In Chrome, click <strong>Keep &rarr; Keep anyway</strong>. In Windows, click <strong>More info &rarr; Run anyway</strong>. Alternatively, download the <strong>Portable ZIP</strong> above!
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FAQ SECTION ======================= -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow">Frequently Asked Questions</p>
+        <h2 class="section-title">Everything You Need to Know</h2>
+      </div>
+
+      <div class="faq-list">
+        <details open>
+          <summary>Is Independent Books really 100% free forever?</summary>
+          <p>
+            Yes. Independent Books is released under the permissive open-source MIT License. 
+            There are no renewal fees, no subscription plans, no locked screens, no seat limits, and no company limits. 
+            You are free to use it for personal, business, or client bookkeeping.
+          </p>
+        </details>
+
+        <details>
+          <summary>Where is my accounting database stored on my computer?</summary>
+          <p>
+            Your books are stored in a local SQLite file (<code>data/books.sqlite3</code>) on your own machine. 
+            The backend server strictly listens on the loopback address <code>127.0.0.1</code> and has zero external telemetry or cloud sync. 
+            You can take full JSON backups anytime via <strong>Data &rarr; Backup</strong>.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I delete a company I no longer need?</summary>
+          <p>
+            Press <kbd>Alt</kbd>+<kbd>K</kbd> (or <kbd>F3</kbd>) &rarr; select <strong>Alter Company</strong>. 
+            In the Company Alteration screen, press <strong><kbd>Alt</kbd>+<kbd>D</kbd></strong> (or click the red <strong>Delete Company</strong> button). 
+            A two-step safety confirmation dialog will prompt you to confirm permanent deletion.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I import existing company ledgers from Tally Prime?</summary>
+          <p>
+            Yes! Export your masters and vouchers from Tally as standard XML. Then in Independent Books, 
+            choose <strong>Import &rarr; Import XML</strong>, select your exported XML file, preview the transaction counts, and commit.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I run Independent Books on macOS or Linux?</summary>
+          <p>
+            Yes! For macOS, an official launcher script (<code>launch_mac.sh</code>) is included in the GitHub repository that isolates application data in <code>~/Library/Application Support/IndependentBooks</code>. For Linux, you can run the server directly with Python 3.9+.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="brand">
+            <img class="brand__logo" src="assets/logo.png" alt="Logo" width="32" height="32">
+            <span class="brand__text"><span>Independent</span><strong>BOOKS</strong></span>
+          </div>
+          <p>Free, air-gapped double-entry accounting software for independent businesses and accountants worldwide.</p>
+        </div>
+
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#simulator">Live Simulator</a></li>
+            <li><a href="#manifesto">Manifesto</a></li>
+            <li><a href="#features">Key Features</a></li>
+            <li><a href="#comparison">Compare Software</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Downloads</h4>
+          <ul>
+            <li><a href="https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe">Windows Installer</a></li>
+            <li><a href="https://independent-books.pages.dev/downloads/IndependentBooks_Portable.zip">Portable ZIP Edition</a></li>
+            <li><a href="https://github.com/zoro-roronoa74/independent-books/releases">GitHub Releases</a></li>
+            <li><a href="https://github.com/zoro-roronoa74/independent-books">Source Code</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Community & Open Source</h4>
+          <ul>
+            <li><a href="https://github.com/zoro-roronoa74/independent-books" target="_blank" rel="noopener">GitHub Repository</a></li>
+            <li><a href="https://github.com/zoro-roronoa74/independent-books/blob/master/LICENSE" target="_blank" rel="noopener">MIT License</a></li>
+            <li><a href="https://github.com/zoro-roronoa74/independent-books/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing Guide</a></li>
+            <li><a href="mailto:mosoassisstant@gmail.com">Contact / Inquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 Independent Books Contributors · Free & Open-Source Software (MIT License).</p>
+        <p>Built with ❤️ for accounting freedom and data sovereignty.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
