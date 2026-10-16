@@ -829,6 +829,17 @@ class Books:
             self.data['active_company']=name
             return True
 
+    def delete_company(self, name):
+        with self.transaction():
+            name = str(name or '').strip()
+            if not name: raise ValueError('Company name is required')
+            if name not in self.data['companies']: raise ValueError(f'Company "{name}" not found')
+            del self.data['companies'][name]
+            if self.data.get('active_company') == name:
+                remaining = list(self.data['companies'].keys())
+                self.data['active_company'] = remaining[0] if remaining else None
+            return True
+
     def root_group(self,company,group):
         seen=set(); records=company.get('group_records',{})
         while group not in seen:

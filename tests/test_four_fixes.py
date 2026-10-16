@@ -222,3 +222,18 @@ def test_stock_items_window_completely_removed_after_closing_voucher(app):
     expect(page.locator('.floating-dropdown')).to_have_count(0)
 
 
+def test_company_deletion_lifecycle(app):
+    page, db, server = app
+    initial_active = db.get_active_company_name()
+    db.create_or_alter_company({'name': 'CoToDelete', 'starting_from': '20260401', 'ending_at': '20270331'})
+    assert 'CoToDelete' in db.data['companies']
+    assert db.get_active_company_name() == 'CoToDelete'
+
+    db.delete_company('CoToDelete')
+    assert 'CoToDelete' not in db.data['companies']
+    assert db.get_active_company_name() != 'CoToDelete'
+
+    with pytest.raises(ValueError):
+        db.delete_company('CoToDelete')
+
+

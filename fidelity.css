@@ -1030,4 +1030,16 @@ input, textarea, select, [contenteditable="true"] {
   -webkit-user-select: text !important;
 }
 
+button.btn-danger {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border-color: #f87171 !important;
+  font-weight: 600;
+}
+button.btn-danger:hover {
+  background: #fecaca !important;
+  color: #7f1d1d !important;
+  border-color: #ef4444 !important;
+}
+
 

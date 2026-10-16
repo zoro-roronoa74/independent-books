@@ -180,6 +180,11 @@ def make_server(port=3543,data_path=None):
                 if path=='/api/save_company':
                     if payload.get('operation')=='Create' and payload['company_meta'].get('name') in db.data['companies']: raise ValueError('Company name already exists')
                     db.create_or_alter_company(payload['company_meta']);result={}
+                elif path=='/api/delete_company':
+                    target = payload.get('company') or (payload.get('company_meta') or {}).get('name')
+                    if not target: raise ValueError('Company name is required')
+                    db.delete_company(target)
+                    result={'active_company': db.get_active_company_name(), 'companies': list(db.data['companies'].keys())}
                 elif path=='/api/billing_profiles':
                     if not company: raise ValueError('Explicit company is required')
                     result={'profiles':db.save_billing_profiles(company, payload.get('profiles'),
