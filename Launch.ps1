@@ -1,4 +1,4 @@
-param([ValidateRange(1024,65535)][int]$Port = 3543, [string]$DataPath = '', [switch]$NoBrowser)
+param([ValidateRange(1024,65535)][int]$Port = 3543, [string]$DataPath = '', [switch]$NoBrowser, [switch]$Lan)
 $ErrorActionPreference = 'Stop'
 $applicationRoot = $PSScriptRoot
 if (-not $DataPath) {
@@ -63,6 +63,7 @@ if (-not $running) {
     if (Test-Path $nativeServer) {
         $argString = ('--port {0}' -f $Port)
         if ($DataPath) { $argString += (' --data "{0}"' -f $DataPath) }
+        if ($Lan) { $argString += ' --lan' }
         Start-Process -FilePath $nativeServer -ArgumentList $argString -WorkingDirectory $applicationRoot -WindowStyle Hidden
     } else {
         $interpreters = @(
@@ -76,6 +77,7 @@ if (-not $running) {
         $serverFile = Join-Path $applicationRoot 'app_server.py'
         $argString = ('-E -s "{0}" --port {1}' -f $serverFile, $Port)
         if ($DataPath) { $argString += (' --data "{0}"' -f $DataPath) }
+        if ($Lan) { $argString += ' --lan' }
         Start-Process -FilePath $interpreter -ArgumentList $argString -WorkingDirectory $applicationRoot -WindowStyle Hidden
     }
     for ($attempt = 0; $attempt -lt 30; $attempt++) {

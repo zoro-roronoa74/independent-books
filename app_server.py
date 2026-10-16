@@ -63,7 +63,7 @@ def data_view(db,company=None,start=None,end=None):
             'group_records':c.get('group_records',{}), 'master_records':{k:c.get(k+'_records',{}) for k in KINDS}}
 
 
-def make_server(port=3543,data_path=None):
+def make_server(port=3543,data_path=None,allow_lan=False):
     if data_path: data_path = str(data_path).strip('\"\'')
     path = Path(data_path or ROOT/'data'/'books.sqlite3').resolve()
     storage_lock = StorageLock(path)
@@ -156,11 +156,12 @@ def make_server(port=3543,data_path=None):
             except Exception as error: self.send({'status':'error','error':str(error)},400)
         def do_POST(self):
             try:
-                if self.headers.get('Host','') not in ('127.0.0.1:'+str(self.server.server_port),'localhost:'+str(self.server.server_port)):
-                    return self.send({'error':'Invalid local host'},403)
-                origin=self.headers.get('Origin')
-                if origin and origin not in ('http://127.0.0.1:'+str(self.server.server_port),'http://localhost:'+str(self.server.server_port)):
-                    return self.send({'error':'Cross-origin writes are not permitted'},403)
+                if not getattr(self.server, 'allow_lan', False):
+                    if self.headers.get('Host','') not in ('127.0.0.1:'+str(self.server.server_port),'localhost:'+str(self.server.server_port)):
+                        return self.send({'error':'Invalid local host'},403)
+                    origin=self.headers.get('Origin')
+                    if origin and origin not in ('http://127.0.0.1:'+str(self.server.server_port),'http://localhost:'+str(self.server.server_port)):
+                        return self.send({'error':'Cross-origin writes are not permitted'},403)
                 length=int(self.headers.get('Content-Length',0))
                 if length<1 or length>32*1024*1024: return self.send({'error':'Request size must be 1 byte to 32 MiB'},413)
                 raw=self.rfile.read(length).decode('utf-8');path=urlparse(self.path).path
@@ -241,18 +242,33 @@ def make_server(port=3543,data_path=None):
                 self.send({'status':'error','error':str(error)},status)
             except Exception as error: self.send({'status':'error','error':'Operation failed; no save confirmation. '+str(error)},500)
     try:
-        server=BooksServer(('127.0.0.1',port),Handler)
+        host = '0.0.0.0' if allow_lan else '127.0.0.1'
+        server=BooksServer((host,port),Handler)
     except Exception:
         db.connection.close(); storage_lock.close()
         raise
     server.db=db; server.storage_lock=storage_lock
+    server.allow_lan=allow_lan
     return server
 
 
 if __name__=='__main__':
-    import argparse
-    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=3543);parser.add_argument('--data')
-    args=parser.parse_args();server=make_server(args.port,args.data)
-    print('Independent application: http://127.0.0.1:'+str(server.server_port),flush=True)
+    import argparse, socket
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--port',type=int,default=3543)
+    parser.add_argument('--data')
+    parser.add_argument('--lan',action='store_true',help='Allow mobile / Android devices on the same Wi-Fi network')
+    args=parser.parse_args()
+    server=make_server(args.port,args.data,allow_lan=args.lan)
+    print(f'Independent application (Air-gapped localhost): http://127.0.0.1:{server.server_port}',flush=True)
+    if args.lan:
+        try:
+            s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+            s.connect(('8.8.8.8',80))
+            local_ip=s.getsockname()[0]
+            s.close()
+        except Exception:
+            local_ip='0.0.0.0'
+        print(f'📱 Mobile / Android access on same Wi-Fi: http://{local_ip}:{server.server_port}',flush=True)
     try: server.serve_forever()
     finally: server.server_close();server.db.connection.close()

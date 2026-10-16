@@ -93,39 +93,64 @@ Most modern accounting software forces businesses into expensive cloud subscript
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Quick Start & Multi-Platform
 
-### Option 1: Standalone Windows Installer (Recommended)
-1. Download the latest installer: **[IndependentBooksSetup.exe (8.6 MB)](https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe)**
-2. Run the installer. A Desktop shortcut and Start Menu entry will be created.
-3. Launch **Independent Books** — it starts in a hardened, distraction-free application window with its own isolated local runtime.
-
-> **Note on Windows SmartScreen**: Because Independent Books is a community-driven open-source project without an expensive corporate code-signing certificate, Windows SmartScreen may show an *"Unknown Publisher"* warning. Click **More info → Run anyway**. You can verify the official SHA-256 hash below:
-> ```text
-> SHA-256: bb46bd0e15f13fcb3daac5751dc5616f9b3b7556ebcaee7c278d7f843008dd5f
-> ```
+### 🪟 Windows (Installer & Portable)
+- **Installer (Recommended)**: Download **[IndependentBooksSetup.exe (8.57 MB)](https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe)**. Creates a Desktop shortcut, Start Menu entry, and hardened window profile.
+- **Portable Edition**: Download **[IndependentBooks_Portable.zip (8.50 MB)](https://independent-books.pages.dev/downloads/IndependentBooks_Portable.zip)**. Zero installation, runs on USB thumb drives, and completely bypasses SmartScreen warnings.
+- **Verification Hash**:
+  ```text
+  SHA-256: bb46bd0e15f13fcb3daac5751dc5616f9b3b7556ebcaee7c278d7f843008dd5f
+  ```
 
 ---
 
-### Option 2: Run from Source in 30 Seconds
+### 🍎 Apple macOS
+Independent Books supports macOS with dedicated user data storage in `~/Library/Application Support/IndependentBooks/`:
 
-Independent Books runs directly on standard Python 3.9+ with zero required external PyPI packages for core accounting!
+1. **One-Command Launch**:
+   ```bash
+   git clone https://github.com/zoro-roronoa74/independent-books.git
+   cd independent-books
+   chmod +x launch_mac.sh
+   ./launch_mac.sh
+   ```
+2. **Build Standalone DMG Installer** (Optional):
+   ```bash
+   chmod +x build_macos.sh
+   ./build_macos.sh
+   ```
+   This generates `dist_macos/IndependentBooksSetup.dmg` with standard `/Applications` drag-and-drop installation.
 
+---
+
+### 🤖 Android & Tablets (Mobile PWA & Native App)
+Independent Books is fully responsive and supports touch-first voucher creation and live reports on mobile devices:
+
+1. **Instant Wi-Fi Mobile Access (PWA)**:
+   - On your host PC, start Independent Books in LAN mode:
+     ```powershell
+     .\Launch.ps1 -Lan
+     # Or via python:
+     python app_server.py --port 3543 --lan
+     ```
+   - The terminal will display your local IP (e.g., `http://192.168.1.15:3543`).
+   - Open that link in Google Chrome or Brave on your Android phone or tablet.
+   - Tap **⋮ (Menu) → Add to Home screen** to install as a full-screen native PWA!
+2. **Native Android Studio App**:
+   - The repository includes a complete Android Studio Gradle project in the `android/` directory (`com.independentbooks.app`).
+   - Open the `android/` folder in Android Studio and build the standalone release APK.
+
+---
+
+### 💻 Run from Source (Universal)
+Independent Books runs directly on Python 3.9+ with zero required external dependencies for core accounting:
 ```bash
-# 1. Clone the repository
 git clone https://github.com/zoro-roronoa74/independent-books.git
 cd independent-books
-
-# 2. Launch the application server
 python app_server.py --port 3543
 ```
-Open **`http://127.0.0.1:3543`** in your browser.
-
-#### Running on macOS:
-```bash
-chmod +x launch_mac.sh
-./launch_mac.sh
-```
+Open **`http://127.0.0.1:3543`** in any web browser.
 
 ---
 
