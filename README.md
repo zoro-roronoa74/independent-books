@@ -102,7 +102,7 @@ Most modern accounting software forces businesses into expensive cloud subscript
 
 > **Note on Windows SmartScreen**: Because Independent Books is a community-driven open-source project without an expensive corporate code-signing certificate, Windows SmartScreen may show an *"Unknown Publisher"* warning. Click **More info → Run anyway**. You can verify the official SHA-256 hash below:
 > ```text
-> SHA-256: 85cfca2c06cc654e23b410e302946975792b0503e9793568e7e9122f2b1208c7
+> SHA-256: bb46bd0e15f13fcb3daac5751dc5616f9b3b7556ebcaee7c278d7f843008dd5f
 > ```
 
 ---
