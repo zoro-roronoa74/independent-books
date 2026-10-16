@@ -18,7 +18,7 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,8 +33,8 @@
 
       <nav class="topnav" aria-label="Navigation">
         <a href="#simulator">Live Demo</a>
+        <a href="#calculator">Savings</a>
         <a href="#manifesto">Manifesto</a>
-        <a href="#features">Features</a>
         <a href="#comparison">Compare</a>
         <a href="#shortcuts">Shortcuts</a>
         <a href="#download">Downloads</a>
@@ -75,7 +75,7 @@
         </a>
         <a class="btn btn--secondary btn--lg" href="https://github.com/zoro-roronoa74/independent-books" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          View Source & GitHub Stars
+          View Source on GitHub
         </a>
       </div>
 
@@ -101,6 +101,50 @@
     </div>
   </section>
 
+  <!-- ======================= INTERACTIVE TALLY TAX / RENT EXTRACTOR ======================= -->
+  <section class="calc-section" id="calculator">
+    <div class="container">
+      <div class="calc-box">
+        <div class="calc-header">
+          <span class="section-eyebrow">The Cost of Renting Your Own Books</span>
+          <h3>How Much Does Software "Subscription Rent" Cost You?</h3>
+          <p>Traditional accounting vendors charge you year after year just to access your own ledger. Slide to see your cumulative capital loss:</p>
+        </div>
+
+        <div class="calc-slider-wrap">
+          <div class="calc-slider-label">
+            <span>Operating Timeframe:</span>
+            <span><strong id="rentYearsDisplay">5 Years</strong></span>
+          </div>
+          <input type="range" min="1" max="10" value="5" class="calc-slider" id="rentYearsSlider">
+        </div>
+
+        <div class="calc-grid">
+          <!-- Card 1: Tally Prime -->
+          <div class="calc-card">
+            <div class="calc-card__title">Tally Prime (Silver TSS / Renewals)</div>
+            <div class="calc-card__cost" id="tallyCostDisplay">₹1,12,500</div>
+            <div class="calc-card__desc">₹22,500 / year + mandatory upgrade renewals</div>
+          </div>
+
+          <!-- Card 2: Cloud SaaS (QuickBooks / Zoho) -->
+          <div class="calc-card">
+            <div class="calc-card__title">Cloud SaaS (QuickBooks / Zoho)</div>
+            <div class="calc-card__cost" id="cloudCostDisplay">₹1,80,000</div>
+            <div class="calc-card__desc">₹3,000 / month ($360/yr) + extra fees per user seat</div>
+          </div>
+
+          <!-- Card 3: Independent Books (Highlight) -->
+          <div class="calc-card highlight">
+            <div class="calc-card__title">Independent Books</div>
+            <div class="calc-card__cost">₹0.00</div>
+            <div class="calc-card__desc"><strong id="savedCostDisplay" style="color:#059669;">₹1,12,500 Saved</strong> · 100% Free Forever Under MIT License</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ======================= INTERACTIVE LIVE SIMULATOR ======================= -->
   <section class="simulator-section" id="simulator">
     <div class="container">
@@ -110,24 +154,29 @@
         <p class="section-desc">Test real double-entry calculations, live Gateway KPIs, and honest two-sided financial reports right here in your browser.</p>
       </div>
 
-      <div class="simulator-wrapper">
-        <div class="simulator-titlebar">
-          <div class="sim-window-dots">
+      <div class="simulator-frame">
+        <div class="simulator-header">
+          <div class="sim-controls">
             <span class="sim-dot red"></span>
             <span class="sim-dot yellow"></span>
             <span class="sim-dot green"></span>
           </div>
 
-          <div class="sim-tabs">
-            <button class="sim-tab-btn active" data-tab="gateway">Gateway (G)</button>
-            <button class="sim-tab-btn" data-tab="sales">F8 Sales Voucher</button>
-            <button class="sim-tab-btn" data-tab="balance-sheet">Balance Sheet (B)</button>
-            <button class="sim-tab-btn" data-tab="profit-loss">Profit & Loss (P)</button>
+          <div class="sim-address-bar">
+            <span class="sim-address-pulse"></span>
+            <span>http://127.0.0.1:3543 (Air-Gapped Localhost)</span>
           </div>
 
-          <div class="sim-address-bar">
-            <span>● 127.0.0.1:3543 (Localhost Only)</span>
+          <div class="stamp-seal">
+            ✓ ZERO CLOUD LEAK
           </div>
+        </div>
+
+        <div class="sim-tabs">
+          <button class="sim-tab-btn active" data-tab="gateway">Gateway <kbd>G</kbd></button>
+          <button class="sim-tab-btn" data-tab="sales">F8 Sales Voucher <kbd>F8</kbd></button>
+          <button class="sim-tab-btn" data-tab="balance-sheet">Balance Sheet <kbd>B</kbd></button>
+          <button class="sim-tab-btn" data-tab="profit-loss">Profit & Loss <kbd>P</kbd></button>
         </div>
 
         <div class="simulator-body">
@@ -136,16 +185,14 @@
             <div class="sim-gateway-grid">
               <div class="sim-menu-card">
                 <div class="sim-menu-header">Gateway of Books</div>
-                <ul class="sim-menu-list">
-                  <li class="sim-menu-item active"><span>Masters</span><span class="key">M</span></li>
-                  <li class="sim-menu-item"><span>Vouchers</span><span class="key">V</span></li>
-                  <li class="sim-menu-item"><span>Day Book</span><span class="key">K</span></li>
-                  <li class="sim-menu-item"><span>Balance Sheet</span><span class="key">B</span></li>
-                  <li class="sim-menu-item"><span>Profit & Loss A/c</span><span class="key">P</span></li>
-                  <li class="sim-menu-item"><span>Stock Summary</span><span class="key">S</span></li>
-                  <li class="sim-menu-item"><span>Display More Reports</span><span class="key">D</span></li>
-                  <li class="sim-menu-item"><span>Quit</span><span class="key">Q</span></li>
-                </ul>
+                <div class="sim-menu-item active"><span class="hotkey">M</span>asters</div>
+                <div class="sim-menu-item"><span class="hotkey">V</span>ouchers</div>
+                <div class="sim-menu-item">Day Boo<span class="hotkey">k</span></div>
+                <div class="sim-menu-item"><span class="hotkey">B</span>alance Sheet</div>
+                <div class="sim-menu-item"><span class="hotkey">P</span>rofit & Loss A/c</div>
+                <div class="sim-menu-item"><span class="hotkey">S</span>tock Summary</div>
+                <div class="sim-menu-item"><span class="hotkey">D</span>isplay More Reports</div>
+                <div class="sim-menu-item"><span class="hotkey">Q</span>uit</div>
               </div>
 
               <div class="sim-kpi-main">
@@ -167,22 +214,22 @@
                 <div class="sim-chart-card">
                   <div class="sim-chart-header">
                     <strong>Weekly Sales Trend</strong>
-                    <span style="font-size:0.8rem; color:#34d399;">+18.4% vs last week</span>
+                    <span style="font-size:0.85rem; font-weight:700; color:#059669;">+18.4% vs last week</span>
                   </div>
                   <!-- Vector Trend SVG -->
                   <svg viewBox="0 0 600 160" width="100%" height="160" fill="none">
                     <defs>
                       <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
                         <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
                       </linearGradient>
                     </defs>
                     <path d="M 0 130 Q 100 110, 150 90 T 300 100 T 450 40 T 600 20 L 600 160 L 0 160 Z" fill="url(#chartGradient)"/>
-                    <path d="M 0 130 Q 100 110, 150 90 T 300 100 T 450 40 T 600 20" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
-                    <circle cx="150" cy="90" r="4" fill="#38bdf8"/>
-                    <circle cx="300" cy="100" r="4" fill="#38bdf8"/>
-                    <circle cx="450" cy="40" r="4" fill="#38bdf8"/>
-                    <circle cx="600" cy="20" r="5" fill="#34d399"/>
+                    <path d="M 0 130 Q 100 110, 150 90 T 300 100 T 450 40 T 600 20" stroke="#059669" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="150" cy="90" r="5" fill="#0284c7"/>
+                    <circle cx="300" cy="100" r="5" fill="#0284c7"/>
+                    <circle cx="450" cy="40" r="5" fill="#0284c7"/>
+                    <circle cx="600" cy="20" r="6" fill="#059669"/>
                   </svg>
                 </div>
               </div>
@@ -191,31 +238,34 @@
 
           <!-- View 2: F8 Sales Voucher Interactive Calculator -->
           <div class="sim-view" id="view-sales">
-            <div style="background:#131c31; padding:20px; border-radius:12px; border:1px solid var(--border-subtle);">
-              <div style="display:flex; justify-content:space-between; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
-                <strong>Accounting Voucher Creation: Sales (No. 101)</strong>
-                <span style="font-family:var(--font-mono); color:#38bdf8;">Date: 16-Oct-2026</span>
+            <div style="background:#ffffff; padding:24px; border-radius:12px; border:1px solid var(--border-mint);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border-subtle); padding-bottom:14px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <strong style="font-size:1.05rem; color:var(--text-heading);">Accounting Voucher Creation: Sales (No. 101)</strong>
+                  <span class="stamp-seal">✓ BALANCED · DECIMAL PRECISION</span>
+                </div>
+                <span style="font-family:var(--font-mono); font-weight:700; color:var(--accent-deep);">Date: 16-Oct-2026</span>
               </div>
 
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
                 <div>
-                  <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:4px;">Party A/c Name</label>
-                  <select id="sim-party" style="width:100%; padding:8px 12px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:6px;">
+                  <label style="font-size:0.85rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:6px;">Party A/c Name</label>
+                  <select id="sim-party" style="width:100%; padding:10px 14px; background:var(--bg-mint-wash); color:var(--text-heading); font-weight:600; border:1px solid var(--border-mint); border-radius:8px; outline:none;">
                     <option value="intra">M/s Local Steel Traders (Intra-State: CGST + SGST)</option>
                     <option value="inter">M/s National Infrastructure (Inter-State: IGST)</option>
                   </select>
                 </div>
                 <div>
-                  <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:4px;">Sales Ledger</label>
-                  <input type="text" value="GST Sales @ 18%" readonly style="width:100%; padding:8px 12px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:6px;">
+                  <label style="font-size:0.85rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:6px;">Sales Ledger</label>
+                  <input type="text" value="GST Sales @ 18%" readonly style="width:100%; padding:10px 14px; background:var(--bg-mint-wash); color:var(--text-heading); font-weight:600; border:1px solid var(--border-mint); border-radius:8px; outline:none;">
                 </div>
               </div>
 
               <!-- Interactive Item Entry -->
-              <table style="width:100%; border-collapse:collapse; margin-bottom:16px;">
+              <table style="width:100%; border-collapse:collapse; margin-bottom:20px;">
                 <thead>
-                  <tr style="border-bottom:1px solid var(--border-subtle); color:var(--text-muted); font-size:0.85rem; text-align:left;">
-                    <th style="padding:8px 0;">Item Description</th>
+                  <tr style="border-bottom:2px solid var(--border-subtle); color:var(--text-muted); font-size:0.85rem; text-transform:uppercase; text-align:left;">
+                    <th style="padding:10px 0;">Item Description</th>
                     <th>Quantity (pcs)</th>
                     <th>Rate (₹)</th>
                     <th style="text-align:right;">Amount</th>
@@ -223,36 +273,36 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td style="padding:10px 0; font-weight:600;">Heavy Structural Steel Beams (HSN 7216)</td>
-                    <td><input id="sim-qty" type="number" value="10" min="1" style="width:80px; padding:6px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:4px;"></td>
-                    <td><input id="sim-rate" type="number" value="5000" min="100" style="width:100px; padding:6px; background:#0a0f1d; color:#fff; border:1px solid var(--border-medium); border-radius:4px;"></td>
-                    <td style="text-align:right; font-weight:700; font-family:var(--font-mono); color:#38bdf8;" id="sim-taxable">₹50,000.00</td>
+                    <td style="padding:14px 0; font-weight:700; color:var(--text-heading);">Heavy Structural Steel Beams (HSN 7216)</td>
+                    <td><input id="sim-qty" type="number" value="10" min="1" style="width:90px; padding:8px 10px; background:#ffffff; color:var(--text-heading); font-weight:700; border:1px solid var(--border-mint); border-radius:6px;"></td>
+                    <td><input id="sim-rate" type="number" value="5000" min="100" style="width:110px; padding:8px 10px; background:#ffffff; color:var(--text-heading); font-weight:700; border:1px solid var(--border-mint); border-radius:6px;"></td>
+                    <td style="text-align:right; font-weight:800; font-family:var(--font-mono); color:var(--accent-deep); font-size:1.1rem;" id="sim-taxable">₹50,000.00</td>
                   </tr>
                 </tbody>
               </table>
 
               <!-- Automatic State-Aware Tax Breakdown -->
-              <div style="background:#090e1a; padding:14px; border-radius:8px; border:1px dashed var(--border-medium); margin-bottom:16px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;" id="sim-cgst-row">
-                  <span style="color:var(--text-secondary);">Central GST (CGST @ 9%):</span>
-                  <span style="font-family:var(--font-mono); color:#34d399;" id="sim-cgst">₹4,500.00</span>
+              <div style="background:var(--bg-mint-wash); padding:18px 22px; border-radius:10px; border:1px dashed var(--border-mint); margin-bottom:20px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.92rem;" id="sim-cgst-row">
+                  <span style="color:var(--text-body); font-weight:600;">Central GST (CGST @ 9%):</span>
+                  <span style="font-family:var(--font-mono); font-weight:700; color:#059669;" id="sim-cgst">₹4,500.00</span>
                 </div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;" id="sim-sgst-row">
-                  <span style="color:var(--text-secondary);">State GST (SGST @ 9%):</span>
-                  <span style="font-family:var(--font-mono); color:#34d399;" id="sim-sgst">₹4,500.00</span>
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.92rem;" id="sim-sgst-row">
+                  <span style="color:var(--text-body); font-weight:600;">State GST (SGST @ 9%):</span>
+                  <span style="font-family:var(--font-mono); font-weight:700; color:#059669;" id="sim-sgst">₹4,500.00</span>
                 </div>
-                <div style="display:none; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;" id="sim-igst-row">
-                  <span style="color:var(--text-secondary);">Integrated GST (IGST @ 18%):</span>
-                  <span style="font-family:var(--font-mono); color:#a855f7;" id="sim-igst">₹9,000.00</span>
+                <div style="display:none; justify-content:space-between; margin-bottom:8px; font-size:0.92rem;" id="sim-igst-row">
+                  <span style="color:var(--text-body); font-weight:600;">Integrated GST (IGST @ 18%):</span>
+                  <span style="font-family:var(--font-mono); font-weight:700; color:#0284c7;" id="sim-igst">₹9,000.00</span>
                 </div>
-                <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border-subtle); padding-top:8px; font-size:1.1rem; font-weight:800;">
-                  <span>Invoice Grand Total:</span>
-                  <span style="font-family:var(--font-mono); color:#38bdf8;" id="sim-total">₹59,000.00</span>
+                <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border-mint); padding-top:10px; font-size:1.15rem; font-weight:800;">
+                  <span style="color:var(--text-heading);">Invoice Grand Total:</span>
+                  <span style="font-family:var(--font-mono); color:var(--accent-deep);" id="sim-total">₹59,000.00</span>
                 </div>
               </div>
 
               <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>Ctrl</kbd> + <kbd>A</kbd> to Quick Accept · Exact Decimal Precision</span>
+                <span style="font-size:0.85rem; color:var(--text-muted);"><kbd>Ctrl</kbd> + <kbd>A</kbd> to Quick Accept · Exact Python Decimal Precision</span>
                 <button type="button" class="btn btn--primary btn--sm" style="pointer-events:none;">Accept Voucher (Enter)</button>
               </div>
             </div>
@@ -302,7 +352,7 @@
                 <div class="statement-row"><span>Direct Expenses (Freight Inward)</span><span>14,500.00</span></div>
                 <div class="statement-row"><span>Gross Profit c/o</span><span>96,800.00</span></div>
                 <div class="statement-row"><span>Indirect Expenses (Office & Rent)</span><span>54,050.00</span></div>
-                <div class="statement-row total" style="color:#34d399;"><span>Nett Profit</span><span>42,750.00</span></div>
+                <div class="statement-row total"><span>Nett Profit</span><span>42,750.00</span></div>
               </div>
 
               <div class="statement-col">
@@ -337,7 +387,7 @@
       <div class="manifesto-grid">
         <div class="manifesto-card">
           <div class="manifesto-icon green">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Your Data Is Yours Forever</h3>
           <p>
@@ -349,7 +399,7 @@
 
         <div class="manifesto-card">
           <div class="manifesto-icon blue">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <h3>Keyboard Speed at 120 WPM</h3>
           <p>
@@ -361,7 +411,7 @@
 
         <div class="manifesto-card">
           <div class="manifesto-icon purple">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
           <h3>Zero Mathematical Guesswork</h3>
           <p>
@@ -598,20 +648,21 @@
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.996-3.4572c.1051-.1824.0426-.4156-.1398-.5208-.1824-.1052-.4156-.0426-.5208.1398l-2.022 3.5023C15.5492 8.2323 13.8242 7.785 12 7.785c-1.8242 0-3.5492.4473-5.1952 1.2005L4.7828 5.4832c-.1052-.1824-.3384-.245-.5208-.1398-.1824.1052-.2449.3384-.1398.5208l1.996 3.4572C2.6868 11.2335.3432 15.0109 0 19.531h24c-.3432-4.5201-2.6868-8.2975-6.1185-10.2096"/></svg>
             Android Setup Guide
           </a>
+        </div>
       </div>
 
       <!-- Verified SHA-256 Checksum Box -->
       <div class="download-hash-box">
         <div>
-          <span style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); display:block; font-weight:700;">Verified Release SHA-256 Checksum</span>
+          <span style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); display:block; font-weight:800; letter-spacing:0.05em;">Verified Release SHA-256 Checksum</span>
           <span class="hash-text" id="shaHashText">bb46bd0e15f13fcb3daac5751dc5616f9b3b7556ebcaee7c278d7f843008dd5f</span>
         </div>
         <button class="copy-btn" id="copyHashBtn" type="button">Copy Hash</button>
       </div>
       
       <!-- SmartScreen / Chrome note -->
-      <div style="max-width:800px; margin:20px auto 0; padding:16px; background:rgba(234, 179, 8, 0.08); border:1px solid rgba(234, 179, 8, 0.2); border-radius:8px; font-size:0.88rem; color:#fde047; text-align:left;">
-        <strong>💡 Note on Windows SmartScreen & Chrome:</strong> Because Independent Books is a community-funded open-source project without a \$500/year corporate code-signing certificate, Chrome and Windows may show an *"Unknown publisher"* prompt. In Chrome, click <strong>Keep &rarr; Keep anyway</strong>. In Windows, click <strong>More info &rarr; Run anyway</strong>. Alternatively, download the <strong>Portable ZIP</strong> above!
+      <div style="max-width:800px; margin:20px auto 0; padding:16px 20px; background:#fefce8; border:1px solid #fde047; border-radius:10px; font-size:0.88rem; color:#854d0e; text-align:left;">
+        <strong>💡 Note on Windows SmartScreen & Chrome:</strong> Because Independent Books is a community-funded open-source project without an expensive corporate code-signing certificate, Chrome and Windows may show an *"Unknown publisher"* prompt. In Chrome, click <strong>Keep &rarr; Keep anyway</strong>. In Windows, click <strong>More info &rarr; Run anyway</strong>. Alternatively, download the <strong>Portable ZIP</strong> above!
       </div>
     </div>
   </section>
@@ -661,9 +712,9 @@
         </details>
 
         <details>
-          <summary>Can I run Independent Books on macOS or Linux?</summary>
+          <summary>Can I run Independent Books on macOS or Android?</summary>
           <p>
-            Yes! For macOS, an official launcher script (<code>launch_mac.sh</code>) is included in the GitHub repository that isolates application data in <code>~/Library/Application Support/IndependentBooks</code>. For Linux, you can run the server directly with Python 3.9+.
+            Yes! For macOS, an official launcher script (<code>launch_mac.sh</code>) is included in the GitHub repository that isolates application data in <code>~/Library/Application Support/IndependentBooks</code>. For Android, you can run the server in LAN mode (<code>.\Launch.ps1 -Lan</code>) and open your local IP on any phone or tablet as a PWA, or build the standalone native APK from <code>android/</code>.
           </p>
         </details>
       </div>
@@ -686,8 +737,8 @@
           <h4>Navigation</h4>
           <ul>
             <li><a href="#simulator">Live Simulator</a></li>
+            <li><a href="#calculator">Savings Calculator</a></li>
             <li><a href="#manifesto">Manifesto</a></li>
-            <li><a href="#features">Key Features</a></li>
             <li><a href="#comparison">Compare Software</a></li>
           </ul>
         </div>

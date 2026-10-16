@@ -1,12 +1,19 @@
 /* ==========================================================================
-   Independent Books — Interactive 100k-Star Landing Page Script
-   Handles interactive live simulator, tab switches, and clipboard actions
+   Independent Books — Creative Interactive Script
+   Includes:
+   1. Live Tab Switcher with Keyboard Hotkeys (G, F8, B, P)
+   2. Interactive State-Aware GST Invoice Calculator + Balanced Seal Stamp
+   3. The "Tally Tax" Rent Extractor / Cost Savings Interactive Slider
+   4. Tactile 3D Keycap Press Feedback on Physical Typing
+   5. 1-Click Verified SHA-256 Checksum Copier
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
+  // -------------------------------------------------------------------------
   // 1. Live Interactive Simulator Tab Switching
+  // -------------------------------------------------------------------------
   const tabBtns = document.querySelectorAll('.sim-tab-btn');
   const simViews = document.querySelectorAll('.sim-view');
 
@@ -25,12 +32,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // 2. Keyboard simulation in simulator (Pressing F8, B, P, G switches tabs)
-  document.addEventListener('keydown', function (e) {
-    // Only if not actively typing in an input
-    if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+  function switchTab(name) {
+    const btn = document.querySelector(`.sim-tab-btn[data-tab="${name}"]`);
+    if (btn) btn.click();
+  }
 
-    if (e.key === 'F8' || (e.altKey && e.key.toLowerCase() === 'v')) {
+  // -------------------------------------------------------------------------
+  // 2. Keyboard Hotkey Listeners & Tactile 3D Keycap Press Feedback
+  // -------------------------------------------------------------------------
+  document.addEventListener('keydown', function (e) {
+    // Flash corresponding keycap on screen if present
+    const keyText = e.key.toUpperCase();
+    const matchingKbds = document.querySelectorAll('kbd');
+    matchingKbds.forEach(kbd => {
+      if (kbd.textContent.trim().toUpperCase() === keyText || 
+         (keyText.startsWith('F') && kbd.textContent.trim().toUpperCase() === keyText)) {
+        kbd.classList.add('active-press');
+        setTimeout(() => kbd.classList.remove('active-press'), 160);
+      }
+    });
+
+    // Don't intercept if user is typing in form inputs
+    if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+
+    if (e.key === 'F8') {
       e.preventDefault();
       switchTab('sales');
     } else if (e.key.toLowerCase() === 'b' && !e.ctrlKey && !e.altKey) {
@@ -42,12 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  function switchTab(name) {
-    const btn = document.querySelector(`.sim-tab-btn[data-tab="${name}"]`);
-    if (btn) btn.click();
-  }
-
+  // -------------------------------------------------------------------------
   // 3. Interactive Sales Invoice Calculator Simulator
+  // -------------------------------------------------------------------------
   const qtyInput = document.getElementById('sim-qty');
   const rateInput = document.getElementById('sim-rate');
   const partySelect = document.getElementById('sim-party');
@@ -66,7 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const rate = parseFloat(rateInput.value) || 0;
     const taxable = qty * rate;
 
-    if (taxableSpan) taxableSpan.textContent = '₹' + taxable.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+    if (taxableSpan) {
+      taxableSpan.textContent = '₹' + taxable.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+    }
 
     const isInterState = partySelect && partySelect.value === 'inter';
 
@@ -93,21 +117,64 @@ document.addEventListener('DOMContentLoaded', function () {
   if (rateInput) rateInput.addEventListener('input', updateInvoiceCalculation);
   if (partySelect) partySelect.addEventListener('change', updateInvoiceCalculation);
 
-  // 4. Copy Checksum to Clipboard
+  // -------------------------------------------------------------------------
+  // 4. "Tally Tax" / Rent Extractor Slider Calculator (Creative Feature)
+  // -------------------------------------------------------------------------
+  const rentSlider = document.getElementById('rentYearsSlider');
+  const rentYearsDisplay = document.getElementById('rentYearsDisplay');
+  const tallyCostDisplay = document.getElementById('tallyCostDisplay');
+  const cloudCostDisplay = document.getElementById('cloudCostDisplay');
+  const savedCostDisplay = document.getElementById('savedCostDisplay');
+
+  function updateRentCalculation() {
+    if (!rentSlider) return;
+    const years = parseInt(rentSlider.value, 10) || 1;
+    if (rentYearsDisplay) {
+      rentYearsDisplay.textContent = `${years} ${years === 1 ? 'Year' : 'Years'}`;
+    }
+
+    // Tally Silver: ~₹22,500/year (or renewals/TSS)
+    const tallyTotal = years * 22500;
+    // Cloud ERP (Zoho / QuickBooks): ~₹36,000/year
+    const cloudTotal = years * 36000;
+
+    if (tallyCostDisplay) {
+      tallyCostDisplay.textContent = '₹' + tallyTotal.toLocaleString('en-IN');
+    }
+    if (cloudCostDisplay) {
+      cloudCostDisplay.textContent = '₹' + cloudTotal.toLocaleString('en-IN');
+    }
+    if (savedCostDisplay) {
+      savedCostDisplay.textContent = '₹' + tallyTotal.toLocaleString('en-IN') + ' Saved';
+    }
+  }
+
+  if (rentSlider) {
+    rentSlider.addEventListener('input', updateRentCalculation);
+    updateRentCalculation();
+  }
+
+  // -------------------------------------------------------------------------
+  // 5. Copy Verified SHA-256 Hash to Clipboard
+  // -------------------------------------------------------------------------
   const copyBtn = document.getElementById('copyHashBtn');
   const hashText = document.getElementById('shaHashText');
 
   if (copyBtn && hashText) {
     copyBtn.addEventListener('click', function () {
-      const text = hashText.textContent.trim();
-      navigator.clipboard.writeText(text).then(() => {
-        const orig = copyBtn.textContent;
+      const textToCopy = hashText.textContent.trim();
+      navigator.clipboard.writeText(textToCopy).then(function () {
+        const originalText = copyBtn.textContent;
         copyBtn.textContent = '✓ Copied!';
-        copyBtn.style.color = '#10b981';
-        setTimeout(() => {
-          copyBtn.textContent = orig;
+        copyBtn.style.background = '#d1fae5';
+        copyBtn.style.color = '#047857';
+        setTimeout(function () {
+          copyBtn.textContent = originalText;
+          copyBtn.style.background = '';
           copyBtn.style.color = '';
         }, 2000);
+      }).catch(function (err) {
+        console.error('Could not copy hash: ', err);
       });
     });
   }
