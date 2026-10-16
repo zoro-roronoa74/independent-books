@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://independent-books.pages.dev/sitemap.xml
+Sitemap: https://zoro-roronoa74.github.io/independent-books/sitemap.xml

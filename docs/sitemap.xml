@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://independent-books.pages.dev/</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://independent-books.pages.dev/assets/social-preview.png</image:loc>
+      <image:title>Independent Books - 100% Free Accounting Software</image:title>
+      <image:caption>Free, open-source air-gapped Tally Prime alternative</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://independent-books.pages.dev/assets/logo.png</image:loc>
+      <image:title>Independent Books Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://zoro-roronoa74.github.io/independent-books/</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

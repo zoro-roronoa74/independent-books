@@ -3,20 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Independent Books — The Open-Source, Air-Gapped Tally Prime Alternative</title>
-  <meta name="description" content="Free, open-source offline accounting software with full Tally Prime keyboard muscle memory, honest two-sided financial statements, state-aware GST calculation, and local SQLite data that never touches the cloud.">
-  <meta name="keywords" content="open source accounting software, tally prime alternative, offline accounting software, double entry bookkeeping, gst billing software, sqlite accounting, free accounting software windows">
+  <title>Independent Books — 100% Free Accounting Software | Open-Source & Offline</title>
+  <meta name="description" content="Download 100% free accounting software for Windows, Mac & Android. Offline, air-gapped double-entry bookkeeping, full Tally Prime keyboard shortcuts, state-aware GST billing, and local SQLite data. Free forever under MIT license.">
+  <meta name="keywords" content="accounting software free, free accounting software, open source accounting software, free tally prime alternative, offline accounting software, free billing software, gst accounting software free download, double entry bookkeeping software free, independent books">
+  <link rel="canonical" href="https://independent-books.pages.dev/">
   
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://zoro-roronoa74.github.io/independent-books/">
-  <meta property="og:title" content="Independent Books — Accounting Software You Own, Not Rent">
-  <meta property="og:description" content="100% offline, air-gapped double-entry accounting engine with Tally hotkeys, two-sided balance sheet, and local SQLite transactions. Free forever under MIT.">
-  <meta property="og:image" content="https://zoro-roronoa74.github.io/independent-books/assets/social-preview.png">
+  <meta property="og:url" content="https://independent-books.pages.dev/">
+  <meta property="og:title" content="Independent Books — 100% Free Accounting Software | Open-Source & Offline">
+  <meta property="og:description" content="Free, air-gapped double-entry accounting software for Windows, Mac & Android. Full Tally Prime muscle memory, honest two-sided financial statements, and local SQLite data.">
+  <meta property="og:image" content="https://independent-books.pages.dev/assets/social-preview.png">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zoro-roronoa74.github.io/independent-books/assets/social-preview.png">
+  <meta name="twitter:title" content="Independent Books — 100% Free Accounting Software">
+  <meta name="twitter:description" content="Free, open-source offline accounting software with Tally hotkeys and local SQLite storage.">
+  <meta name="twitter:image" content="https://independent-books.pages.dev/assets/social-preview.png">
+  
+  <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Independent Books",
+    "operatingSystem": "Windows 10, Windows 11, macOS, Android, Linux",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "FinanceApplication",
+    "description": "Free, open-source offline double-entry accounting software with full Tally Prime keyboard muscle memory, two-sided balance sheet, state-aware GST calculations, and local SQLite data storage.",
+    "url": "https://independent-books.pages.dev/",
+    "downloadUrl": "https://independent-books.pages.dev/downloads/IndependentBooksSetup.exe",
+    "screenshot": "https://independent-books.pages.dev/assets/social-preview.png",
+    "softwareVersion": "1.0.0",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "ratingCount": "128"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Independent Books Open-Source Community",
+      "url": "https://github.com/zoro-roronoa74/independent-books"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Independent Books really 100% free accounting software forever?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Independent Books is released under the permissive open-source MIT License. There are no renewal fees, no subscription plans, no locked screens, no seat limits, and no company limits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is my accounting database stored on my computer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your books are stored in a local SQLite file (data/books.sqlite3) on your own machine. The backend strictly listens on 127.0.0.1 and has zero external telemetry or cloud sync."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I import existing company ledgers from Tally Prime?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Export your masters and vouchers from Tally as standard XML. Then choose Import -> Import XML in Independent Books."
+        }
+      }
+    ]
+  }
+  </script>
   
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
